@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a4a3a">
+<meta name="description" content="حاسبة مكافأة نهاية الخدمة والمستحقات في الكويت وفق قانون العمل 6/2010 وقانون العمالة المنزلية 68/2015 — عربي/إنجليزي، وضع ليلي ونهاري">
+<title>حاسبة مكافأة نهاية الخدمة في الكويت — قانون العمل 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+/* منع وميض الوضع الليلي قبل التحميل */
+(function(){try{var t=localStorage.getItem('kw-theme');
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}})();
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --g900:#052e23;--g800:#0a4a3a;--g700:#0c6b4f;--g600:#0f8a63;--g500:#16a874;
+ --gold:#d4af37;--goldL:#f2d675;
+ --bg:#eef3ef;--card:#ffffff;--card2:#f7fbf9;--card3:#fbfdfc;
+ --ink:#0f231b;--mut:#5a7568;--body2:#3c554a;
+ --line:#dfe9e3;--line2:#e4ede7;--bdSoft:#cfe4d7;
+ --chip:#eefaf3;--chipBd:#cfe9db;--hoverBd:#b9dcc9;
+ --acc:#0c6b4f;--cval:#0a4a3a;
+ --rangeTrack:#e3ece6;--trackBg:#e7efe9;
+ --amberBg:#fff7e6;--amberTxt:#9a6b0f;--amberBd:#f0dfae;
+ --stickyBg:#ffffff;
+ --shadow:0 12px 32px -20px rgba(6,46,37,.28);
+ --goldBd:#ecd98f;--goldTxt:#8a6a08;--goldBg1:#fdf8e9;--goldBg2:#faf1d3;--goldTxt2:#6b5205;
+ --goodBg:#eefaf3;--goodBd:#bfe6d0;--goodTxt:#0b5c44;
+ --redTxt:#c0392b;--negBg:#fdf5f4;--negBd:#f2d4cf;--negTxt2:#c0392b;
+ --warnBg2:#fdf0ee;--warnBd2:#f2cdc7;
+ --domBg:#eef4fb;--domBd:#cfdef2;--domTxt:#2b4a6f;
+ --formulaBg:#f2f8f4;
+ color-scheme:light;
+}
+html[data-theme=dark]{
+ --bg:#0c1310;--card:#152119;--card2:#101a14;--card3:#132019;
+ --ink:#e9f3ed;--mut:#93ac9e;--body2:#c2d4c9;
+ --line:#233429;--line2:#2a3d31;--bdSoft:#2c4636;
+ --chip:#163325;--chipBd:#2e5a41;--hoverBd:#3f6b52;
+ --acc:#4ecb96;--cval:#8fe3bd;
+ --rangeTrack:#22332a;--trackBg:#22332a;
+ --amberBg:#2a2108;--amberTxt:#e8c56a;--amberBd:#4a3b12;
+ --stickyBg:#0f1a14;
+ --shadow:0 12px 32px -20px rgba(0,0,0,.65);
+ --goldBd:#4a3b12;--goldTxt:#e8c56a;--goldBg1:#241d08;--goldBg2:#241d08;--goldTxt2:#e8c56a;
+ --goodBg:#14251c;--goodBd:#2e5a41;--goodTxt:#7dd8ae;
+ --redTxt:#ff9d8f;--negBg:#2a1412;--negBd:#5c2a24;--negTxt2:#ff9d8f;
+ --warnBg2:#3a1713;--warnBd2:#5c2a24;
+ --domBg:#101d2e;--domBd:#28405c;--domTxt:#a9c4e8;
+ --formulaBg:#14241c;
+ color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body{
+ font-family:'Cairo',system-ui,'Segoe UI',sans-serif;color:var(--ink);line-height:1.75;
+ background:radial-gradient(1200px 500px at 85% -100px,rgba(15,138,99,.13),transparent 60%),
+ radial-gradient(900px 420px at -120px 25%,rgba(212,175,55,.10),transparent 60%),var(--bg);
+ padding-bottom:calc(104px + env(safe-area-inset-bottom));
+}
+[hidden]{display:none!important}
+.num{direction:ltr;unicode-bidi:isolate}
+::selection{background:var(--goldL);color:#241c04}
+button{font-family:inherit}
+input[type=number],input[type=text]{color:var(--ink)}
+
+/* ═══ الهيدر ═══ */
+.hero-head{background:linear-gradient(135deg,#04251c,#0a4a3a 48%,#0d6b4e);color:#fff;padding:42px 20px 74px;position:relative;overflow:hidden}
+.hero-head::after{content:'';position:absolute;inset:0;background:radial-gradient(640px 300px at 12% 130%,rgba(212,175,55,.20),transparent 60%)}
+.hero-head .in{max-width:1150px;margin:auto;position:relative;z-index:1}
+.hero-head .top-chip{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;margin-bottom:14px}
+.hero-head h1{font-size:clamp(24px,4vw,38px);font-weight:900;line-height:1.4}
+.hero-head h1 .hl{color:var(--goldL)}
+.hero-head p{max-width:820px;color:#d9ece2;margin-top:10px;font-size:15px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.hero-badges span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:5px 13px;font-size:12.5px;font-weight:700}
+
+/* ═══ الحاوية ═══ */
+.wrap{max-width:1150px;margin:-44px auto 0;padding:0 16px;position:relative;z-index:2}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:24px;margin-bottom:22px;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sec-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+.sec-head .ic{width:46px;height:46px;flex:none;display:grid;place-items:center;font-size:22px;border-radius:14px;background:linear-gradient(135deg,var(--g700),var(--g500));box-shadow:0 8px 18px -10px rgba(12,107,79,.6)}
+.sec-head h2{font-size:19px;font-weight:800;line-height:1.4}
+.sec-head p{font-size:13px;color:var(--mut);font-weight:600}
+
+/* ═══ خيارات ═══ */
+.grp{margin-bottom:20px}
+.grp>label.gt{display:block;font-weight:800;font-size:14.5px;margin-bottom:10px}
+.gt .hint{color:var(--mut);font-size:12px;font-weight:700}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{position:relative;display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:2px solid var(--line2);border-radius:15px;cursor:pointer;transition:.18s;background:var(--card3)}
+.opt:hover{border-color:var(--hoverBd)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .ic{font-size:24px;line-height:1.4}
+.opt b{display:block;font-size:14.5px}
+.opt small{color:var(--mut);font-size:12px;font-weight:600;display:block}
+.opt .tick{position:absolute;top:10px;inset-inline-end:10px;width:20px;height:20px;border-radius:50%;background:var(--g600);color:#fff;font-size:12px;display:none;place-items:center}
+.opt:has(input:checked),.opt.on{border-color:var(--g600);background:var(--chip);box-shadow:0 0 0 4px rgba(15,138,99,.09)}
+.opt:has(input:checked) .tick,.opt.on .tick{display:grid}
+
+/* ═══ الراتب ═══ */
+.sal-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.sal-box{display:flex;align-items:center;gap:8px;border:2px solid var(--line2);border-radius:14px;padding:8px 16px;background:var(--card3)}
+.sal-box:focus-within{border-color:var(--g600)}
+input[type=number]{border:none;outline:none;font-family:inherit;background:transparent;font-weight:800;color:var(--ink)}
+input[type=number].big{font-size:22px;width:130px;text-align:center}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield;appearance:textfield}
+.kd{background:var(--chip);color:var(--acc);font-weight:800;font-size:13px;border-radius:8px;padding:3px 10px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:9px;border-radius:99px;outline:none;margin:14px 0 8px;cursor:pointer;direction:ltr}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--g600);box-shadow:0 3px 10px rgba(10,74,58,.35);cursor:grab}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--g600);box-shadow:0 3px 10px rgba(10,74,58,.35);cursor:grab}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.schip{background:var(--chip);border:1.5px solid var(--chipBd);color:var(--acc);font-weight:800;font-size:12.5px;border-radius:99px;padding:5px 14px;cursor:pointer;transition:.15s}
+.schip:hover{background:var(--g600);color:#fff;border-color:var(--g600)}
+
+/* ═══ مدة الخدمة ═══ */
+.panel{background:var(--card2);border:1.5px dashed var(--bdSoft);border-radius:15px;padding:16px;margin-top:12px}
+.panel .frow{display:flex;gap:14px;flex-wrap:wrap}
+.field{flex:1;min-width:170px}
+.field label{display:block;font-size:12.5px;font-weight:800;color:var(--mut);margin-bottom:6px}
+.field input{width:100%;border:2px solid var(--line2);border-radius:12px;padding:10px 12px;font-size:16px;font-weight:800;font-family:inherit;outline:none;background:var(--card);color:var(--ink)}
+.field input:focus{border-color:var(--g600)}
+.field input[type=date]{direction:ltr;text-align:center}
+.dur-chip{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--g700),var(--g500));color:#fff;font-weight:800;font-size:14px;border-radius:99px;padding:8px 18px;margin-top:14px;box-shadow:0 8px 18px -10px rgba(12,107,79,.55)}
+
+/* ═══ بطاقة النتيجة ═══ */
+.top-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:22px;align-items:start}
+.result-hero{background:linear-gradient(150deg,#06352a,#0b5340 55%,#0d6b4e);color:#fff;border-radius:20px;padding:26px;position:relative;overflow:hidden;box-shadow:0 18px 40px -22px rgba(6,46,37,.5)}
+html[data-theme=dark] .result-hero{box-shadow:0 18px 40px -22px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.06)}
+.result-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(420px 220px at 85% -10%,rgba(212,175,55,.25),transparent 65%)}
+.rh-top{position:relative;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ring-wrap{position:relative;width:132px;height:132px;flex:none}
+.ring-wrap svg{width:132px;height:132px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:11}
+.ring-fg{fill:none;stroke:url(#goldGrad);stroke-width:11;stroke-linecap:round;stroke-dasharray:364.42;stroke-dashoffset:364.42;transition:stroke-dashoffset .7s cubic-bezier(.22,1,.36,1)}
+.ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-txt b{font-size:29px;font-weight:900;color:var(--goldL)}
+.ring-txt small{font-size:11px;font-weight:700;color:#cfe6da}
+.rh-info{flex:1;min-width:220px}
+.rh-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.rh-chips span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:4px 12px;font-size:11.5px;font-weight:700}
+.rh-label{font-size:13px;font-weight:700;color:#cfe6da}
+.rh-amount{font-size:clamp(32px,4.5vw,46px);font-weight:900;line-height:1.25;background:linear-gradient(110deg,#f6e27a,#d4af37 55%,#f6e27a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rh-amount .cur{font-size:.55em}
+.rh-meta{font-size:12.5px;color:#cfe6da;font-weight:600;margin-top:4px}
+.rh-permonth{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:7px 14px;font-size:12.5px;font-weight:700;margin-top:12px;flex-wrap:wrap}
+.hero-warn{background:rgba(192,57,43,.16);border:1px solid rgba(255,140,120,.4);border-radius:12px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-top:14px;color:#ffd9d2}
+
+/* ═══ العملات والذهب ═══ */
+.cur-rows{display:grid;gap:10px}
+.cur-row{display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--line2);border-radius:13px;padding:10px 16px}
+.cur-row .fl{font-size:22px}
+.cur-row .cname{font-size:13px;font-weight:700;color:var(--mut);flex:1}
+.cur-row .cval{font-weight:900;font-size:16px;color:var(--cval)}
+.gold-line{background:linear-gradient(135deg,var(--goldBg1),var(--goldBg2));border:1px solid var(--goldBd);border-radius:13px;padding:12px 16px;font-size:13.5px;font-weight:600;margin-top:12px;color:var(--goldTxt2)}
+.gold-line b{color:var(--goldTxt)}
+.rates{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.rates .lbl{font-size:12px;font-weight:800;color:var(--mut)}
+.rates .rt{display:flex;align-items:center;gap:6px;background:var(--card);border:1.5px solid var(--line2);border-radius:10px;padding:4px 10px;font-size:11.5px;font-weight:700;color:var(--mut)}
+.rates .rt input{width:64px;font-size:13px;font-weight:800;padding:2px;border-bottom:2px solid var(--g600);background:transparent;outline:none}
+.rates-note{font-size:11px;color:var(--mut);margin-top:8px;font-weight:600}
+
+/* ═══ مسار الاستحقاق ═══ */
+.track-zone{padding:6px 10px 0}
+.track{position:relative;height:10px;background:var(--trackBg);border-radius:99px;margin:52px 4px 62px}
+.track .fill{position:absolute;inset-inline-start:0;top:0;height:100%;border-radius:99px;background:linear-gradient(to left,var(--gold),#f3d97b);width:0%;transition:width .6s ease}
+.dot{position:absolute;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--card);border:5px solid var(--g600);z-index:2}
+.dot .dl{position:absolute;top:-40px;inset-inline-start:50%;transform:translateX(50%);white-space:nowrap;font-size:11.5px;font-weight:800;color:var(--cval)}
+.dot .dp{position:absolute;bottom:-30px;inset-inline-start:50%;transform:translateX(50%);white-space:nowrap;font-size:11px;font-weight:800;background:var(--g700);color:#fff;border-radius:99px;padding:2px 10px}
+.pin{position:absolute;top:50%;transform:translateY(-50%);width:24px;height:24px;background:linear-gradient(135deg,var(--goldL),#b8860b);border:4px solid var(--card);border-radius:50%;box-shadow:0 4px 12px rgba(120,90,10,.45);z-index:3;transition:.6s ease}
+.pin-lbl{position:absolute;top:-38px;transform:translateX(50%);white-space:nowrap;background:var(--g900);color:var(--goldL);font-size:11.5px;font-weight:800;padding:3px 12px;border-radius:99px;z-index:3;transition:.6s ease;box-shadow:0 6px 14px rgba(5,46,35,.35)}
+.note{border-radius:14px;padding:14px 16px;font-size:13.5px;font-weight:600;line-height:1.8}
+.note.tip{background:linear-gradient(135deg,var(--goldBg1),var(--goldBg2));border:1px solid var(--goldBd);color:var(--goldTxt2)}
+.note.tip b{color:var(--goldTxt)}
+.note.good{background:var(--goodBg);border:1px solid var(--goodBd);color:var(--goodTxt)}
+.note.good b{color:var(--goodTxt)}
+.note.warn{background:var(--amberBg);border:1px solid var(--amberBd);color:var(--amberTxt)}
+.cal-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+/* ═══ الأزرار ═══ */
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0c6a4e,#0f8a63);color:#fff;border:none;padding:10px 18px;border-radius:12px;font-weight:800;font-family:inherit;font-size:13.5px;cursor:pointer;text-decoration:none;transition:.15s;box-shadow:0 8px 18px -8px rgba(10,74,58,.55)}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn.gold{background:linear-gradient(135deg,#c9971c,#e3b93f);color:#241c04;box-shadow:0 8px 18px -8px rgba(160,120,20,.55)}
+.btn.ghost{background:var(--card);color:var(--acc);border:2px solid var(--chipBd);box-shadow:none}
+.btn.sm{padding:7px 14px;font-size:12.5px}
+
+/* ═══ التسوية ═══ */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tile{background:var(--card2);border:1.5px solid var(--line2);border-radius:15px;padding:14px}
+.tile.neg{background:var(--negBg);border-color:var(--negBd)}
+.tile label{display:block;font-size:12.5px;font-weight:800;margin-bottom:4px}
+.tile small{display:block;color:var(--mut);font-size:11px;font-weight:600;margin-bottom:10px;line-height:1.5}
+.tile-in{display:flex;align-items:center;gap:6px;border:2px solid var(--line2);border-radius:11px;padding:7px 10px;background:var(--card)}
+.tile-in:focus-within{border-color:var(--g600)}
+.tile-in input{width:100%;font-size:16px}
+.tile-in span{font-size:11px;font-weight:800;color:var(--mut);flex:none}
+.tile-calc{font-size:12px;font-weight:800;color:var(--acc);margin-top:8px}
+.tile.neg .tile-calc{color:var(--negTxt2)}
+.btable{margin-top:20px;border:1.5px solid var(--line2);border-radius:15px;overflow:hidden}
+.brow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 18px;font-size:13.5px;font-weight:700;border-bottom:1px solid var(--line)}
+.brow:nth-child(odd){background:var(--card2)}
+.brow b{font-weight:900;color:var(--cval)}
+.brow.neg b{color:var(--negTxt2)}
+.brow.total{background:linear-gradient(135deg,var(--g800),var(--g600));color:#fff;font-weight:900;font-size:15.5px;border:none}
+.brow.total b{color:var(--goldL);font-size:19px}
+.settle-warn{background:var(--warnBg2);border:1.5px solid var(--warnBd2);color:var(--redTxt);font-weight:800;font-size:13px;border-radius:12px;padding:10px 16px;margin-top:14px}
+
+/* ═══ المقارنة ═══ */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp-tile{position:relative;border:2px solid var(--line2);border-radius:16px;padding:18px;background:var(--card3);transition:.2s}
+.cmp-tile small{color:var(--mut);font-weight:700;font-size:12.5px;display:block}
+.cmp-tile .cv{font-size:clamp(20px,2.6vw,27px);font-weight:900;color:var(--cval);margin:4px 0}
+.cmp-tile .cn{font-size:12px;color:var(--mut);font-weight:700}
+.cmp-tile.sel{border-color:var(--g600);background:var(--chip);box-shadow:0 0 0 4px rgba(15,138,99,.09)}
+.cmp-badge{position:absolute;top:-11px;inset-inline-end:16px;background:var(--g600);color:#fff;font-size:10.5px;font-weight:800;border-radius:99px;padding:3px 11px;display:none}
+.cmp-tile.sel .cmp-badge{display:block}
+.cmp-diff{margin-top:14px;text-align:center;font-size:13.5px;font-weight:700;color:var(--mut)}
+.cmp-diff b{color:var(--acc)}
+
+/* ═══ الرسم ═══ */
+.chart{direction:ltr;display:flex;align-items:flex-end;gap:6px;height:235px;padding:34px 2px 0}
+.bar{flex:1;position:relative;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#16a874,#0b5c44);cursor:pointer;transition:filter .15s;min-height:3px}
+.bar:hover{filter:brightness(1.18)}
+.bar.zero{background:var(--line2)}
+.bar.you{background:linear-gradient(180deg,#f2d675,#c9971c)}
+.bar.active{box-shadow:0 0 0 3px rgba(212,175,55,.45);filter:saturate(1.25)}
+.bar .bv{position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:800;background:var(--g900);color:#fff;padding:2px 8px;border-radius:7px;white-space:nowrap;display:none;font-family:'Cairo',sans-serif}
+.bar.active .bv{display:block}
+.chart-labels{direction:ltr;display:flex;gap:6px;margin-top:6px}
+.chart-labels .yl{flex:1;text-align:center;font-size:11px;font-weight:700;color:var(--mut)}
+.chart-info{margin-top:12px;background:var(--chip);border:1.5px solid var(--chipBd);border-radius:13px;padding:11px 16px;font-size:13.5px;font-weight:700;color:var(--cval);text-align:center}
+.chart-note{font-size:12px;color:var(--mut);font-weight:600;margin-top:8px;text-align:center}
+
+/* ═══ الخطوات ═══ */
+.steps{list-style:none}
+.steps li{display:flex;gap:16px;position:relative;padding-bottom:22px}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:'';position:absolute;top:44px;bottom:0;inset-inline-start:19px;width:2.5px;background:var(--chipBd)}
+.steps li:last-child::before{display:none}
+.st-n{width:40px;height:40px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,var(--g700),var(--g500));color:#fff;font-weight:900;font-size:17px;border-radius:13px;box-shadow:0 8px 16px -8px rgba(12,107,79,.55)}
+.steps h4{font-size:15px;font-weight:800}
+.st-d{font-size:12.5px;color:var(--mut);font-weight:600}
+.st-f{font-size:14px;font-weight:700;background:var(--card2);border:1.5px dashed var(--bdSoft);border-radius:12px;padding:8px 14px;margin-top:6px}
+.st-f b{color:var(--acc)}
+
+/* ═══ المشاركة ═══ */
+.share-card{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;text-align:center}
+.copy-ok{color:var(--g600);font-weight:900;font-size:13px}
+
+/* ═══ الأسئلة ═══ */
+.faq-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.faq-tools input{flex:1;min-width:220px;border:2px solid var(--line2);border-radius:12px;padding:10px 16px;font-family:inherit;font-size:14px;font-weight:700;outline:none;background:var(--card)}
+.faq-tools input:focus{border-color:var(--g600)}
+#faqCount{font-size:12.5px;font-weight:800;color:var(--acc)}
+details.faq{border:1.5px solid var(--line2);border-radius:14px;padding:13px 18px;margin-bottom:10px;background:var(--card3)}
+details.faq summary{font-weight:800;font-size:14px;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::before{content:'﹢';color:var(--g600);font-weight:900;flex:none;transition:.2s}
+details.faq[open] summary::before{content:'﹣'}
+details.faq .a{margin-top:9px;font-size:13.5px;font-weight:600;color:var(--body2);border-top:1px dashed var(--line2);padding-top:9px}
+
+/* ═══ القانون ═══ */
+.law-box h3{font-size:16px;font-weight:800;margin:18px 0 8px;color:var(--cval)}
+.law-box p{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--body2)}
+.law-box ul{margin:6px 18px 10px 0;font-size:13.5px;font-weight:600;color:var(--body2)}
+.formula{background:var(--formulaBg);border-inline-start:4px solid var(--gold);border-radius:10px;padding:10px 16px;font-weight:800;font-size:14.5px;margin:10px 0;color:var(--acc)}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+.tbl th{background:linear-gradient(135deg,var(--g800),var(--g600));color:#fff;padding:10px;font-weight:800}
+.tbl td{border:1px solid var(--line2);padding:9px 10px;text-align:center;font-weight:700;background:var(--card)}
+.tbl tr:nth-child(even) td{background:var(--card2)}
+.disclaimer{background:var(--amberBg);border:1.5px solid var(--amberBd);border-radius:14px;padding:14px 18px;font-size:13px;font-weight:700;color:var(--amberTxt);margin-top:16px}
+.dom-box{background:var(--domBg);border:1.5px solid var(--domBd);border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:600;color:var(--domTxt)}
+
+/* ═══ الفوتر ═══ */
+footer{max-width:1150px;margin:8px auto 0;padding:10px 20px 26px;text-align:center}
+footer .disc{font-size:12px;color:var(--mut);font-weight:600;line-height:1.9;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+footer .cr{font-size:12px;color:var(--mut);font-weight:700;margin-top:12px}
+
+/* ═══ الشريط الثابت (دائماً ظاهر أثناء التمرير) ═══ */
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:var(--stickyBg);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(6,46,37,.12);padding-bottom:env(safe-area-inset-bottom)}
+.sticky .in{max-width:1150px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 16px}
+.s-item small{display:block;font-size:10.5px;font-weight:800;color:var(--mut)}
+.s-item b{font-size:19px;font-weight:900;color:var(--cval)}
+.s-item .u{display:inline;font-size:11px;color:var(--mut);font-weight:700;margin-inline-start:4px}
+.s-item.gold-t b{color:var(--goldTxt)}
+.s-div{width:1.5px;height:34px;background:var(--line2)}
+.up{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--g700),var(--g500));color:#fff;font-size:14px;cursor:pointer;box-shadow:0 8px 16px -8px rgba(12,107,79,.55)}
+.tb{width:40px;height:40px;border-radius:12px;border:2px solid var(--chipBd);background:var(--chip);color:var(--acc);font-weight:900;font-size:15px;cursor:pointer;font-family:inherit;transition:.15s}
+.tb:hover{background:var(--g600);color:#fff;border-color:var(--g600)}
+.tb:active{transform:scale(.94)}
+
+/* ═══ اتجاه LTR للإنجليزية ═══ */
+[dir=ltr] .track .fill{background:linear-gradient(to right,var(--gold),#f3d97b)}
+[dir=ltr] .dot .dl,[dir=ltr] .dot .dp{transform:translateX(-50%)}
+[dir=ltr] .pin-lbl{transform:translateX(-50%)}
+[dir=ltr] .law-box ul{margin:6px 0 10px 18px}
+
+/* ═══ استجابة ═══ */
+@media (max-width:960px){
+ .top-grid{grid-template-columns:1fr}
+ .tiles{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+ .opts{grid-template-columns:1fr}
+ .tiles{grid-template-columns:1fr}
+ .cmp-grid{grid-template-columns:1fr}
+ .rh-top{justify-content:center;text-align:center}
+ .rh-chips,.rh-info{width:100%}
+ body{padding-bottom:calc(170px + env(safe-area-inset-bottom))}
+ .sticky .in{gap:10px}
+ .s-div{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+ .sticky,.share-card,.faq-tools{display:none!important}
+ body{background:#fff;padding:0}
+ .card,.result-hero{box-shadow:none;break-inside:avoid}
+ .result-hero,.tbl th,.brow.total,.sec-head .ic,.st-n,.pin,.dot .dp,.pin-lbl,.bar .bv,.cmp-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ الهيدر ═══════════ -->
+<header class="hero-head">
+ <div class="in">
+  <span class="top-chip" data-i18n="chipTop">🇰🇼 الكويت · أداة مجانية · محدّث 2026</span>
+  <h1><span data-i18n="h1a">حاسبة</span> <span class="hl" data-i18n="h1b">مكافأة نهاية الخدمة</span> <span data-i18n="h1c">ومستحقاتها في الكويت</span></h1>
+  <p data-i18n="heroP">تخطط للاستقالة أو تواجه إنهاء عقد؟ احسب فوراً مكافأة نهاية الخدمة وكامل مستحقاتك بالدينار الكويتي وفق قانون العمل رقم 6/2010 (القطاع الخاص) وقانون رقم 68/2015 (العمالة المنزلية) — كل النتائج تظهر مباشرة أمامك في صفحة واحدة.</p>
+  <div class="hero-badges">
+   <span data-i18n="b1">✔ استناداً إلى قانون العمل الكويتي</span>
+   <span data-i18n="b2">✔ تحديث فوري للنتائج</span>
+   <span data-i18n="b3">✔ تسوية كاملة + خطوات الحساب</span>
+  </div>
+ </div>
+</header>
+
+<div class="wrap">
+
+ <!-- ═══════════ المدخلات + النتيجة ═══════════ -->
+ <div class="top-grid">
+
+  <section class="card">
+   <div class="sec-head">
+    <div class="ic">⚙️</div>
+    <div><h2 data-i18n="detailsH">بياناتك</h2><p data-i18n="detailsP">عدّل القيم وشاهد النتائج تتحدّث فوراً</p></div>
+   </div>
+
+   <div class="grp">
+    <label class="gt" data-i18n="sectorLbl">قطاع العمل</label>
+    <div class="opts">
+     <label class="opt"><input type="radio" name="sector" value="private" checked><span class="ic">🏢</span><span><b data-i18n="sectorPriv">القطاع الخاص</b><small data-i18n="sectorPrivS">شركات ومؤسسات · قانون العمل 6/2010</small></span><span class="tick">✓</span></label>
+     <label class="opt"><input type="radio" name="sector" value="domestic"><span class="ic">🏠</span><span><b data-i18n="sectorDom">عامل منزلي</b><small data-i18n="sectorDomS">عمالة منزلية · قانون 68/2015</small></span><span class="tick">✓</span></label>
+    </div>
+   </div>
+
+   <div class="grp">
+    <label class="gt" data-i18n="endLbl">كيف تنتهي الوظيفة؟</label>
+    <div class="opts">
+     <label class="opt"><input type="radio" name="ending" value="terminated"><span class="ic">📄</span><span><b data-i18n="endT">صاحب العمل يُنهي العقد</b><small data-i18n="endTS">إنهاء أو انتهاء مدة العقد</small></span><span class="tick">✓</span></label>
+     <label class="opt"><input type="radio" name="ending" value="resigned" checked><span class="ic">✋</span><span><b data-i18n="endR">أستقيل بنفسي</b><small data-i18n="endRS">استقالة طوعية</small></span><span class="tick">✓</span></label>
+    </div>
+   </div>
+
+   <div class="grp">
+    <label class="gt"><span data-i18n="salaryLbl">الراتب الشهري</span> <small class="hint" data-i18n="salaryHint">(الأساسي + العلاقات الثابتة)</small></label>
+    <div class="sal-row">
+     <div class="sal-box"><input type="number" class="big" id="salaryNum" min="0" max="99999" step="25" value="2250"><span class="kd" data-i18n="kwd">د.ك</span></div>
+    </div>
+    <input type="range" id="salaryRange" min="50" max="5000" step="25" value="2250">
+    <div class="chips">
+     <button class="schip" data-v="150">150</button>
+     <button class="schip" data-v="300">300</button>
+     <button class="schip" data-v="500">500</button>
+     <button class="schip" data-v="1000">1,000</button>
+     <button class="schip" data-v="2000">2,000</button>
+    </div>
+   </div>
+
+   <div class="grp">
+    <label class="gt" data-i18n="svcLbl">مدة الخدمة</label>
+    <div class="opts">
+     <label class="opt"><input type="radio" name="smode" value="quick"><span class="ic">🔢</span><span><b data-i18n="quickB">سنوات وأشهر</b><small data-i18n="quickS">تقدير سريع</small></span><span class="tick">✓</span></label>
+     <label class="opt"><input type="radio" name="smode" value="dates" checked><span class="ic">📅</span><span><b data-i18n="datesB">تاريخ الالتحاق</b><small data-i18n="datesS">دقيق حتى اليوم</small></span><span class="tick">✓</span></label>
+    </div>
+
+    <div class="panel" id="quickPanel" hidden>
+     <div class="frow">
+      <div class="field"><label data-i18n="fYears">سنوات الخدمة</label><input type="number" id="qy" min="0" max="60" value="9"></div>
+      <div class="field"><label data-i18n="fMonths">أشهر إضافية</label><input type="number" id="qm" min="0" max="11" value="5"></div>
+     </div>
+    </div>
+
+    <div class="panel" id="datesPanel">
+     <div class="frow">
+      <div class="field"><label data-i18n="fJoin">تاريخ الالتحاق بالعمل</label><input type="date" id="joinDate"></div>
+      <div class="field"><label data-i18n="fLast">آخر يوم عمل</label><input type="date" id="lastDate"></div>
+     </div>
+    </div>
+    <span class="dur-chip" id="svcSummary">⏱️ …</span>
+   </div>
+  </section>
+
+  <section class="result-hero" aria-live="polite">
+   <div class="rh-top">
+    <div class="ring-wrap">
+     <svg viewBox="0 0 140 140" aria-hidden="true">
+      <defs><linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset="1" stop-color="#c9971c"/></linearGradient></defs>
+      <circle class="ring-bg" cx="70" cy="70" r="58"></circle>
+      <circle class="ring-fg" id="ringFg" cx="70" cy="70" r="58"></circle>
+     </svg>
+     <div class="ring-txt"><b id="ringPct">0%</b><small data-i18n="resRing">من المكافأة</small></div>
+    </div>
+    <div class="rh-info">
+     <div class="rh-chips"><span id="chipSector"></span><span id="chipEnding"></span></div>
+     <div class="rh-label" data-i18n="resLbl">مكافأة نهاية الخدمة التقديرية</div>
+     <div class="rh-amount"><span class="num" id="heroAmount">0.000</span> <span class="cur" data-i18n="kwd">د.ك</span></div>
+     <div class="rh-meta" id="heroMeta"></div>
+     <div class="rh-permonth"><span data-i18n="perMonthLbl">📊 عن كل شهر خدمة:</span> <span class="num" id="heroPerMonth">0.000</span> <span data-i18n="kwd">د.ك</span></div>
+    </div>
+   </div>
+   <div id="heroNote"></div>
+  </section>
+ </div>
+
+ <!-- ═══════════ العملات والذهب ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">💱</div>
+   <div><h2 data-i18n="curH">ما يعادلها بالعملات والذهب</h2><p data-i18n="curP">تقديرات تحويل تقريبية — عدّل الأسعار لتناسب سعر اليوم</p></div>
+  </div>
+  <div class="cur-rows">
+   <div class="cur-row"><span class="fl">🇮🇳</span><span class="cname" data-i18n="cInr">روبي هندي (INR)</span><b class="cval num" id="cvInr">₹ 0</b></div>
+   <div class="cur-row"><span class="fl">🇵🇰</span><span class="cname" data-i18n="cPkr">روبي باكستاني (PKR)</span><b class="cval num" id="cvPkr">₨ 0</b></div>
+   <div class="cur-row"><span class="fl">🇵🇭</span><span class="cname" data-i18n="cPhp">بيزو فلبيني (PHP)</span><b class="cval num" id="cvPhp">₱ 0</b></div>
+   <div class="cur-row"><span class="fl">🇪🇬</span><span class="cname" data-i18n="cEgp">جنيه مصري (EGP)</span><b class="cval num" id="cvEgp">ج.م 0</b></div>
+   <div class="cur-row"><span class="fl">🇸🇦</span><span class="cname" data-i18n="cSar">ريال سعودي (SAR)</span><b class="cval num" id="cvSar">ر.س 0</b></div>
+  </div>
+  <div class="gold-line" id="goldLine"></div>
+  <div class="rates">
+   <span class="lbl" data-i18n="ratesLbl">⚙️ تعديل الأسعار:</span>
+   <span class="rt"><span data-i18n="rInrLbl">د.ك → ₹</span> <input type="number" id="rInr" min="1" step="0.01"></span>
+   <span class="rt"><span data-i18n="rPkrLbl">د.ك → ₨</span> <input type="number" id="rPkr" min="1" step="0.01"></span>
+   <span class="rt"><span data-i18n="rPhpLbl">د.ك → ₱</span> <input type="number" id="rPhp" min="1" step="0.01"></span>
+   <span class="rt"><span data-i18n="rEgpLbl">د.ك → ج.م</span> <input type="number" id="rEgp" min="1" step="0.01"></span>
+   <span class="rt"><span data-i18n="rSarLbl">د.ك → ر.س</span> <input type="number" id="rSar" min="1" step="0.01"></span>
+   <span class="rt"><span data-i18n="rGoldLbl">الذهب د.ك/جرام</span> <input type="number" id="rGold" min="1" step="0.01"></span>
+  </div>
+  <div class="rates-note" data-i18n="ratesNote">أسعار تقريبية غير رسمية (تُحدَّث يدوياً) — عدّلها لتحصل على تحويل أدق.</div>
+ </section>
+
+ <!-- ═══════════ مسار الاستحقاق ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">🧭</div>
+   <div><h2 data-i18n="trackH">رحلتك نحو الاستحقاق الكامل</h2><p data-i18n="trackP">نسبة استحقاقك من المكافأة ترتفع كلما طالت خدمتك</p></div>
+  </div>
+  <div class="track-zone">
+   <div class="track">
+    <div class="fill" id="trackFill"></div>
+    <div class="dot" style="inset-inline-start:calc(30% - 10px)"><span class="dl" data-i18n="d3">3 سنوات</span><span class="dp">50%</span></div>
+    <div class="dot" style="inset-inline-start:calc(50% - 10px)"><span class="dl" data-i18n="d5">5 سنوات</span><span class="dp">67%</span></div>
+    <div class="dot" style="inset-inline-start:calc(100% - 10px)"><span class="dl" data-i18n="d10">10 سنوات</span><span class="dp">100%</span></div>
+    <div class="pin" id="youPin"></div>
+    <div class="pin-lbl" id="youPinLbl">أنت</div>
+   </div>
+   <div id="milestoneBox"></div>
+  </div>
+ </section>
+
+ <!-- ═══════════ التسوية النهائية ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">💼</div>
+   <div><h2 data-i18n="settleH">تسويتك النهائية الكاملة</h2><p data-i18n="settleP">المكافأة جزء فقط مما يُستحق لك عند المغادرة — أضف الباقي لترى الإجمالي</p></div>
+  </div>
+  <div class="tiles">
+   <div class="tile">
+    <label data-i18n="tLeave">🌴 الإجازات غير المستخدمة</label><small data-i18n="tLeaveS">تُصرف نقداً بالأجر اليومي</small>
+    <div class="tile-in"><input type="number" id="lv" min="0" max="365" step="0.5" value="0"><span data-i18n="unitDay">يوم</span></div>
+    <div class="tile-calc" id="lvCalc">= 0.000 د.ك</div>
+   </div>
+   <div class="tile">
+    <label data-i18n="tNotice">📣 أجر الإخطار المستحق</label><small data-i18n="tNoticeS">إذا انتهى العقد دون إشعار (المادة 44)</small>
+    <div class="tile-in"><input type="number" id="np" min="0" max="6" step="0.5" value="0"><span data-i18n="unitMonth">شهر</span></div>
+    <div class="tile-calc" id="npCalc">= 0.000 د.ك</div>
+   </div>
+   <div class="tile">
+    <label data-i18n="tUnpaid">💵 راتب لم يُصرف</label><small data-i18n="tUnpaidS">أيام عمل لم تُدفع بعد</small>
+    <div class="tile-in"><input type="number" id="us" min="0" step="1" value="0"><span data-i18n="kwd">د.ك</span></div>
+    <div class="tile-calc" data-i18n="calcAsIs">يُضاف كما هو</div>
+   </div>
+   <div class="tile">
+    <label data-i18n="tOther">➕ مستحقات أخرى</label><small data-i18n="tOtherS">تذكرة سفر، مكافآت، بدلات</small>
+    <div class="tile-in"><input type="number" id="od" min="0" step="1" value="0"><span data-i18n="kwd">د.ك</span></div>
+    <div class="tile-calc" data-i18n="calcAsIs">يُضاف كما هو</div>
+   </div>
+   <div class="tile neg">
+    <label data-i18n="tDed">➖ خصومات</label><small data-i18n="tDedS">قروض وسلف مستحقة لصاحب العمل</small>
+    <div class="tile-in"><input type="number" id="dd" min="0" step="1" value="0"><span data-i18n="kwd">د.ك</span></div>
+    <div class="tile-calc" data-i18n="calcDed">يُخصم من الإجمالي</div>
+   </div>
+  </div>
+
+  <div class="btable">
+   <div class="brow"><span id="bkPayLbl" data-i18n="bPay">مكافأة نهاية الخدمة</span><b class="num" id="bkPay">0.000</b></div>
+   <div class="brow"><span data-i18n="bLeave">بدل الإجازات غير المستخدمة</span><b class="num" id="bkLeave">0.000</b></div>
+   <div class="brow"><span data-i18n="bNotice">أجر مهلة الإخطار</span><b class="num" id="bkNotice">0.000</b></div>
+   <div class="brow"><span data-i18n="bUnpaid">راتب غير مدفوع</span><b class="num" id="bkUnpaid">0.000</b></div>
+   <div class="brow"><span data-i18n="bOther">مستحقات أخرى</span><b class="num" id="bkOther">0.000</b></div>
+   <div class="brow neg"><span data-i18n="bDed">الخصومات</span><b class="num" id="bkDed">0.000</b></div>
+   <div class="brow total"><span data-i18n="bTotal">💵 الإجمالي الذي ستتقاضاه</span><b class="num" id="settleTotal">0.000 د.ك</b></div>
+  </div>
+  <div class="settle-warn" id="settleWarn" hidden>⚠️ الخصومات تتجاوز إجمالي المستحقات — راجع القيم المدخلة.</div>
+ </section>
+
+ <!-- ═══════════ المقارنة ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">⚖️</div>
+   <div><h2 data-i18n="cmpH">تستقيل أم تنتظر الإنهاء؟</h2><p data-i18n="cmpP">قارن المبلغين بنفس مدة خدمتك الحالية</p></div>
+  </div>
+  <div class="cmp-grid">
+   <div class="cmp-tile" id="tileT">
+    <span class="cmp-badge" data-i18n="cmpBadge">اختيارك الحالي</span>
+    <small data-i18n="cmpT">📄 إذا أنهى صاحب العمل العقد</small>
+    <div class="cv num" id="cmpT">0.000 د.ك</div>
+    <span class="cn" id="cmpTNote"></span>
+   </div>
+   <div class="cmp-tile" id="tileR">
+    <span class="cmp-badge" data-i18n="cmpBadge">اختيارك الحالي</span>
+    <small data-i18n="cmpR">✋ إذا استقلت الآن</small>
+    <div class="cv num" id="cmpR">0.000 د.ك</div>
+    <span class="cn" id="cmpRNote"></span>
+   </div>
+  </div>
+  <div class="cmp-diff" id="cmpDiff"></div>
+ </section>
+
+ <!-- ═══════════ الرسم البياني ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">📈</div>
+   <div><h2 data-i18n="chartH">نمو مكافأتك مع كل سنة خدمة</h2><p data-i18n="chartP">اضغط على أي عمود لرؤية القيمة عند تلك النقطة · العمود الذهبي يقارب وضعك الحالي</p></div>
+  </div>
+  <div class="chart" id="chartBars"></div>
+  <div class="chart-labels" id="chartLabels"></div>
+  <div class="chart-info" id="chartInfo"></div>
+  <div class="chart-note" id="chartNote"></div>
+ </section>
+
+ <!-- ═══════════ خطوات الحساب ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">🧮</div>
+   <div><h2 data-i18n="stepsH">الحساب خطوة بخطوة</h2><p data-i18n="stepsP">كيف وصلنا إلى هذا الرقم — بشفافية كاملة</p></div>
+  </div>
+  <ol class="steps" id="stepsBox"></ol>
+ </section>
+
+ <!-- ═══════════ المشاركة ═══════════ -->
+ <section class="card share-card">
+  <button class="btn" id="copyBtn" data-i18n="shareCopy">🔗 نسخ رابط هذه النتيجة</button>
+  <a class="btn" style="background:linear-gradient(135deg,#1faa55,#25d366)" id="waBtn" target="_blank" rel="noopener" href="#" data-i18n="shareWa">📲 مشاركة عبر واتساب</a>
+  <button class="btn ghost" id="printBtn" data-i18n="sharePrint">🖨️ طباعة / حفظ PDF</button>
+  <span class="copy-ok" id="copyOk" hidden data-i18n="copied">✓ تم نسخ الرابط</span>
+ </section>
+
+ <!-- ═══════════ الأسئلة الشائعة ═══════════ -->
+ <section class="card">
+  <div class="sec-head">
+   <div class="ic">❓</div>
+   <div><h2 data-i18n="faqH">الأسئلة الشائعة حول مكافأة نهاية الخدمة في الكويت</h2><p data-i18n="faqP">ابحث أو تصفّح — كل الأجوبة معروضة أمامك</p></div>
+  </div>
+  <div class="faq-tools">
+   <input type="text" id="faqSearch" data-i18n-ph="faqPh" placeholder="🔍 ابحث… مثال: استقالة، سقف، منزلي، إجازة">
+   <span id="faqCount"></span>
+   <button class="btn ghost sm" id="faqOpen" data-i18n="faqOpen">فتح الكل</button>
+   <button class="btn ghost sm" id="faqClose" data-i18n="faqClose">طي الكل</button>
+  </div>
+  <div id="faqList">
+   <details class="faq" open><summary data-i18n="faq1q">1. ما هي مكافأة نهاية الخدمة في الكويت؟</summary><div class="a" data-i18n="faq1a">مكافأة نقدية إلزامية يستحقها العامل عند انتهاء علاقة عمله بالاستقالة أو الإنهاء أو انتهاء مدة العقد. ينظمها في القطاع الخاص قانون العمل رقم 6 لسنة 2010 (خاصة المادة 51)، وفي العمالة المنزلية القانون رقم 68 لسنة 2015.</div></details>
+   <details class="faq" open><summary data-i18n="faq2q">2. كيف تُحسب مكافأة نهاية الخدمة للقطاع الخاص؟</summary><div class="a" data-i18n="faq2a">وفق المادة 51: 15 يوم أجر عن كل سنة من السنوات الخمس الأولى، و30 يوماً (شهر كامل) عن كل سنة تالية، على أساس الأجر اليومي (الراتب الشهري ÷ 26)، وبحد أقصى 18 شهراً من الأجر.</div></details>
+   <details class="faq" open><summary data-i18n="faq3q">3. هل تُحسب المكافأة على الراتب الأساسي أم الإجمالي؟</summary><div class="a" data-i18n="faq3a">الأساس القانوني هو الأجر الشامل: الأساسي + العلاقات الثابتة المستمرة (وفق تعريف الأجر في المادة 62)، بينما لا تدخل العمولات والمكافآت المتقطعة عادةً في الحساب. أدخل في الحاسبة راتبك الأساسي مع علاقاتك الثابتة.</div></details>
+   <details class="faq" open><summary data-i18n="faq4q">4. ماذا يحدث لمكافأتي إذا استقلت قبل 3 سنوات؟</summary><div class="a" data-i18n="faq4a">لا يستحق العامل مكافأة إذا استقال قبل إكمال 3 سنوات خدمة متصلة (0%) — ما لم يكن الإنهاء صادراً من صاحب العمل.</div></details>
+   <details class="faq" open><summary data-i18n="faq5q">5. كم أستحق إذا استقلت بعد 3 سنوات؟</summary><div class="a" data-i18n="faq5a">نصف المكافأة الكاملة (50%).</div></details>
+   <details class="faq" open><summary data-i18n="faq6q">6. كم أستحق إذا استقلت بعد 5 سنوات؟</summary><div class="a" data-i18n="faq6a">ثلثا المكافأة الكاملة (66.6%).</div></details>
+   <details class="faq" open><summary data-i18n="faq7q">7. هل أحصل على كامل المكافأة إذا استقلت بعد 10 سنوات؟</summary><div class="a" data-i18n="faq7a">نعم؛ الاستقالة بعد إكمال 10 سنوات خدمة تمنحك 100% من كامل المكافأة.</div></details>
+   <details class="faq" open><summary data-i18n="faq8q">8. ماذا لو أنهى صاحب العمل العقد؟</summary><div class="a" data-i18n="faq8a">تستحق 100% من المكافأة الكاملة، إضافة إلى أجر مهلة الإخطار إذا لم يُخطر مسبقاً، والإجازات غير المستخدمة، وتذكرة العودة لغير الكويتيين، وقد تستحق تعويضاً إضافياً إذا كان الإنهاء تعسفياً.</div></details>
+   <details class="faq" open><summary data-i18n="faq9q">9. هل يوجد حد أقصى لمكافأة نهاية الخدمة؟</summary><div class="a" data-i18n="faq9a">نعم؛ لا تتجاوز المكافأة أجر 18 شهراً من آخر أجر للعامل مهما بلغت مدة خدمته (المادة 51).</div></details>
+   <details class="faq" open><summary data-i18n="faq10q">10. كيف يؤثر العقد محدد المدة على المكافأة؟</summary><div class="a" data-i18n="faq10a">قواعد المكافأة واحدة للعقود محددة وغير محددة المدة. أما إنهاء العقد محدد المدة من صاحب العمل قبل انتهائه لغير الأسباب المشروعة فيعطي العامل حقاً في تعويض إضافي.</div></details>
+   <details class="faq" open><summary data-i18n="faq11q">11. هل يستحق العامل بدوام جزئي مكافأة نهاية خدمة؟</summary><div class="a" data-i18n="faq11a">نعم، ويُحتسب أجره اليومي بما يتناسب مع أيام أو ساعات عمله الفعلية.</div></details>
+   <details class="faq" open><summary data-i18n="faq12q">12. هل يمكن لصاحب العمل خصم مبالغ من المكافأة؟</summary><div class="a" data-i18n="faq12a">لا يجوز الخصم إلا للدين الثابت (كالسلف والقروض الموثقة) وبقدره فقط، ولا يصح الخصم تعسفاً أو مقابل ادعاءات غير مثبتة.</div></details>
+   <details class="faq" open><summary data-i18n="faq13q">13. هل أفقد كامل مكافأتي إذا فُصلت من العمل؟</summary><div class="a" data-i18n="faq13a">الفصل لسبب مشروع مثبت (بعد تحقيق موثق وفق حالات القانون) قد يُسقط بعض الحقوق، أما الفصل التعسفي فلا يُسقط المكافأة بل قد يستحق معها تعويضاً إضافياً أمام المحكمة العمالية.</div></details>
+   <details class="faq" open><summary data-i18n="faq14q">14. هل تُحتسب فترة التجربة ضمن مدة الخدمة؟</summary><div class="a" data-i18n="faq14a">نعم تُحتسب ضمن المدة، علماً بأن الحد الأقصى لفترة التجربة في القطاع الخاص 100 يوم عمل.</div></details>
+   <details class="faq" open><summary data-i18n="faq15q">15. ماذا أفعل إذا أخطأ صاحب العمل في حساب مستحقاتي؟</summary><div class="a" data-i18n="faq15a">حاوِل التسوية ودياً أولاً، ثم قدّم شكوى إلى الهيئة العامة للقوى العاملة (قطاع علاقات العمل)، وإن لم تُحل تُحال إلى المحكمة العمالية. احتفظ بنسخة من العقد وقسائم الرواتب وأي مراسلات.</div></details>
+   <details class="faq" open><summary data-i18n="faq16q">16. هل تُحتسب الإجازات بدون أجر ضمن مدة الخدمة؟</summary><div class="a" data-i18n="faq16a">لا؛ تُستبعد أيام الإجازة بدون أجر من مدة الخدمة عند احتساب المكافأة.</div></details>
+   <details class="faq" open><summary data-i18n="faq17q">17. لماذا تقسم الحاسبة الراتب على 26؟</summary><div class="a" data-i18n="faq17a">لأن الشهر القانوني في الكويت يُحتسب بواقع 26 يوم عمل، وهو المعيار المعتمد لاستخراج الأجر اليومي في حسابات نهاية الخدمة.</div></details>
+   <details class="faq" open><summary data-i18n="faq18q">18. كيف تُحسب مكافأة العامل المنزلي؟</summary><div class="a" data-i18n="faq18a">وفق قانون 68/2015: مكافأة تعادل أجر شهر عن كل سنة خدمة، وتُستحق أساساً عند إنهاء صاحب العمل للعقد أو انتهاء مدته، وقد تتأثر عند الاستقالة قبل انتهاء العقد.</div></details>
+   <details class="faq" open><summary data-i18n="faq19q">19. هل يحصل الكويتيون على مكافأة نهاية خدمة مع المعاش؟</summary><div class="a" data-i18n="faq19a">العاملون الكويتيون مشمولون بنظام التأمينات الاجتماعية، وقانون العمل 6/2010 يطبَّق أساساً على غير الكويتيين في القطاع الخاص، بينما تُنظَّم مستحقات الكويتيين بقوانين التأمينات وبنود عقودهم.</div></details>
+   <details class="faq" open><summary data-i18n="faq20q">20. هل تُدفع الإجازات المتراكمة منفصلة عن المكافأة؟</summary><div class="a" data-i18n="faq20a">نعم؛ تُصرف الأيام المتراكمة نقداً بالأجر اليومي وتُضاف إلى التسوية النهائية بشكل مستقل عن المكافأة — أدخلها في خانة «الإجازات غير المستخدمة» أعلاه.</div></details>
+  </div>
+ </section>
+
+ <!-- ═══════════ قسم القانون ═══════════ -->
+ <section class="card law-box">
+  <div class="sec-head">
+   <div class="ic">📚</div>
+   <div><h2 data-i18n="lawH">فهم نظام نهاية الخدمة في قانون العمل الكويتي</h2><p data-i18n="detailsP2">المرجع القانوني المبسط الذي تعتمد عليه الحاسبة</p></div>
+  </div>
+  <p data-i18n-html="lawIntro">يوجّب قانون العمل الكويتي — وتحديداً <b>المادة 51</b> — على أصحاب العمل في القطاع الخاص صرف منفعة مالية إلزامية عند انتهاء علاقة العمل، تُعرف بـ«مكافأة نهاية الخدمة». وتتوقف قيمتها على ثلاثة عوامل: الراتب الشهري (الأساسي + العلاقات الثابتة)، ومدة الخدمة الفعلية، وطريقة انتهاء العقد (استقالة أم إنهاء).</p>
+
+  <h3 data-i18n="law1h">1) تحديد الأجر اليومي</h3>
+  <p data-i18n="law1p">يُحتسب الشهر القانوني في الكويت بواقع 26 يوم عمل:</p>
+  <div class="formula" data-i18n="law1f">الأجر اليومي = الراتب الشهري ÷ 26</div>
+
+  <h3 data-i18n="law2h">2) الاحتساب حسب مدة الخدمة</h3>
+  <ul>
+   <li data-i18n="law2l1">أول 5 سنوات: 15 يوماً من الأجر اليومي عن كل سنة خدمة.</li>
+   <li data-i18n="law2l2">بعد 5 سنوات: 30 يوماً (شهر كامل) عن كل سنة إضافية.</li>
+   <li data-i18n="law2l3">سقف قانوني: لا تتجاوز المكافأة أجر 18 شهراً مهما طالت المدة.</li>
+  </ul>
+
+  <h3 data-i18n="law3h">3) جدول الاستقالة مقابل الإنهاء</h3>
+  <table class="tbl">
+   <tr><th data-i18n="tblY">سنوات الخدمة المكتملة</th><th data-i18n="tblT">عند إنهاء صاحب العمل</th><th data-i18n="tblR">عند الاستقالة</th></tr>
+   <tr><td data-i18n="tr1">أقل من 3 سنوات</td><td>100%</td><td data-i18n="tr1b">0% (لا استحقاق)</td></tr>
+   <tr><td data-i18n="tr2">من 3 إلى 5 سنوات</td><td>100%</td><td data-i18n="tr2b">50% (النصف)</td></tr>
+   <tr><td data-i18n="tr3">من 5 إلى 10 سنوات</td><td>100%</td><td data-i18n="tr3b">66.6% (الثلثان)</td></tr>
+   <tr><td data-i18n="tr4">أكثر من 10 سنوات</td><td>100%</td><td data-i18n="tr4b">100% (كاملة)</td></tr>
+  </table>
+
+  <h3 data-i18n="law4h">4) الإجازات السنوية غير المستخدمة</h3>
+  <p data-i18n="law4p">تُحوَّل الأيام المتراكمة إلى نقد بالأجر اليومي وتُضاف إلى التسوية النهائية:</p>
+  <div class="formula" data-i18n="law4f">قيمة الإجازة = الأيام غير المستخدمة × الأجر اليومي</div>
+
+  <h3 data-i18n="law5h">5) العامل المنزلي (قانون 68/2015)</h3>
+  <div class="dom-box" data-i18n-html="domBox">مكافأة تعادل <b>أجر شهر عن كل سنة خدمة</b>، وتُستحق عند إنهاء صاحب العمل للعقد أو انتهاء مدته، وقد تتأثر عند الاستقالة قبل انتهاء العقد — راجع عقدك أو الهيئة العامة للقوى العاملة عند الشك.</div>
+
+  <h3 data-i18n="law6h">6) مستحقات أخرى شائعة عند نهاية الخدمة</h3>
+  <ul>
+   <li data-i18n="law6l1">أجر مهلة الإخطار إذا تم الإنهاء دون إشعار مسبق (المادة 44).</li>
+   <li data-i18n="law6l2">تذكرة العودة إلى الوطن لغير الكويتيين عند انتهاء الخدمة.</li>
+   <li data-i18n="law6l3">أي رواتب أو بدلات مستحقة غير مدفوعة، والخصومات الموثقة فقط.</li>
+  </ul>
+
+  <div class="disclaimer" data-i18n="lawDisc">⚠️ إخلاء مسؤولية قانوني: توفر هذه الحاسبة تقديراً آلياً بناءً على تفسير عام لقانون العمل الكويتي رقم 6/2010 (قطاع خاص، قاسم 26 يوماً، سقف 18 شهراً) وقانون 68/2015 للعمالة المنزلية. قد تختلف المبالغ النهائية بحسب بنود عقدك ولوائح الشركة والقرارات المعمول بها من الهيئة العامة للقوى العاملة. للنزاعات الرسمية يُرجى استشارة محامٍ مرخص في الكويت.</div>
+ </section>
+
+</div>
+
+<footer>
+ <div class="disc" data-i18n="footDisc">هذه الأداة تقديرية فقط وتستند إلى قانون العمل الكويتي رقم 6/2010 (القطاع الخاص: قسمة 26 يوماً، سقف 18 شهراً) وقانون 68/2015 (العمالة المنزلية). أسعار تحويل العملات (INR / PKR / PHP / EGP / SAR) والذهب تقريبية وقابلة للتعديل يدوياً أعلاه. قد تختلف تسويتك النهائية عن النتائج المعروضة.</div>
+ <div class="cr" data-i18n="footCr">💚 حاسبة مكافأة نهاية الخدمة — الكويت · جميع الحسابات تجري داخل متصفحك</div>
+</footer>
+
+<!-- ═══════════ الشريط الثابت — ظاهر دائماً في كل الأوقات ═══════════ -->
+<div class="sticky">
+ <div class="in">
+  <button class="tb" id="themeBtn" title="التبديل إلى الوضع الليلي">🌙</button>
+  <button class="tb" id="langBtn" title="التبديل إلى الإنجليزية">EN</button>
+  <div class="s-div"></div>
+  <div class="s-item"><small data-i18n="stInd">مكافأة نهاية الخدمة</small><b class="num" id="stickyInd">0.000</b><small class="u" data-i18n="kwd">د.ك</small></div>
+  <div class="s-div"></div>
+  <div class="s-item gold-t"><small data-i18n="stTot">إجمالي التسوية الكاملة</small><b class="num" id="stickyTot">0.000</b><small class="u" data-i18n="kwd">د.ك</small></div>
+  <button class="up" id="upBtn" title="أعلى الصفحة" data-i18n-title="upTitle">▲</button>
+ </div>
+</div>
+
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const $$=s=>[...document.querySelectorAll(s)];
+const fmt=(n,d=3)=>{if(!isFinite(n))n=0;return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});};
+const fmtI=n=>Math.round(n||0).toLocaleString('en-US');
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* ═══════════ اللغة والترجمة ═══════════ */
+let lang='ar';
+try{lang=store.get('kw-lang')||'ar';}catch(e){}
+const L=(a,en)=>lang==='ar'?a:en;
+const t=k=>I18N[lang][k]??I18N.ar[k]??k;
+
+const I18N={
+ar:{
+ chipTop:'🇰🇼 الكويت · أداة مجانية · محدّث 2026',
+ h1a:'حاسبة',h1b:'مكافأة نهاية الخدمة',h1c:'ومستحقاتها في الكويت',
+ heroP:'تخطط للاستقالة أو تواجه إنهاء عقد؟ احسب فوراً مكافأة نهاية الخدمة وكامل مستحقاتك بالدينار الكويتي وفق قانون العمل رقم 6/2010 (القطاع الخاص) وقانون رقم 68/2015 (العمالة المنزلية) — كل النتائج تظهر مباشرة أمامك في صفحة واحدة.',
+ b1:'✔ استناداً إلى قانون العمل الكويتي',b2:'✔ تحديث فوري للنتائج',b3:'✔ تسوية كاملة + خطوات الحساب',
+ detailsH:'بياناتك',detailsP:'عدّل القيم وشاهد النتائج تتحدّث فوراً',
+ sectorLbl:'قطاع العمل',sectorPriv:'القطاع الخاص',sectorPrivS:'شركات ومؤسسات · قانون العمل 6/2010',
+ sectorDom:'عامل منزلي',sectorDomS:'عمالة منزلية · قانون 68/2015',
+ endLbl:'كيف تنتهي الوظيفة؟',endT:'صاحب العمل يُنهي العقد',endTS:'إنهاء أو انتهاء مدة العقد',
+ endR:'أستقيل بنفسي',endRS:'استقالة طوعية',
+ salaryLbl:'الراتب الشهري',salaryHint:'(الأساسي + العلاقات الثابتة)',kwd:'د.ك',
+ svcLbl:'مدة الخدمة',quickB:'سنوات وأشهر',quickS:'تقدير سريع',
+ datesB:'تاريخ الالتحاق',datesS:'دقيق حتى اليوم',
+ fJoin:'تاريخ الالتحاق بالعمل',fLast:'آخر يوم عمل',fYears:'سنوات الخدمة',fMonths:'أشهر إضافية',
+ resLbl:'مكافأة نهاية الخدمة التقديرية',resRing:'من المكافأة',perMonthLbl:'📊 عن كل شهر خدمة:',
+ curH:'ما يعادلها بالعملات والذهب',curP:'تقديرات تحويل تقريبية — عدّل الأسعار لتناسب سعر اليوم',
+ cInr:'روبي هندي (INR)',cPkr:'روبي باكستاني (PKR)',cPhp:'بيزو فلبيني (PHP)',cEgp:'جنيه مصري (EGP)',cSar:'ريال سعودي (SAR)',
+ rInrLbl:'د.ك → ₹',rPkrLbl:'د.ك → ₨',rPhpLbl:'د.ك → ₱',rEgpLbl:'د.ك → ج.م',rSarLbl:'د.ك → ر.س',rGoldLbl:'الذهب د.ك/جرام',
+ ratesLbl:'⚙️ تعديل الأسعار:',ratesNote:'أسعار تقريبية غير رسمية (تُحدَّث يدوياً) — عدّلها لتحصل على تحويل أدق.',
+ trackH:'رحلتك نحو الاستحقاق الكامل',trackP:'نسبة استحقاقك من المكافأة ترتفع كلما طالت خدمتك',
+ d3:'3 سنوات',d5:'5 سنوات',d10:'10 سنوات',
+ settleH:'تسويتك النهائية الكاملة',settleP:'المكافأة جزء فقط مما يُستحق لك عند المغادرة — أضف الباقي لترى الإجمالي',
+ tLeave:'🌴 الإجازات غير المستخدمة',tLeaveS:'تُصرف نقداً بالأجر اليومي',unitDay:'يوم',
+ tNotice:'📣 أجر الإخطار المستحق',tNoticeS:'إذا انتهى العقد دون إشعار (المادة 44)',unitMonth:'شهر',
+ tUnpaid:'💵 راتب لم يُصرف',tUnpaidS:'أيام عمل لم تُدفع بعد',
+ tOther:'➕ مستحقات أخرى',tOtherS:'تذكرة سفر، مكافآت، بدلات',
+ tDed:'➖ خصومات',tDedS:'قروض وسلف مستحقة لصاحب العمل',
+ calcAsIs:'يُضاف كما هو',calcDed:'يُخصم من الإجمالي',
+ bPay:'مكافأة نهاية الخدمة',bLeave:'بدل الإجازات غير المستخدمة',bNotice:'أجر مهلة الإخطار',
+ bUnpaid:'راتب غير مدفوع',bOther:'مستحقات أخرى',bDed:'الخصومات',bTotal:'💵 الإجمالي الذي ستتقاضاه',
+ cmpH:'تستقيل أم تنتظر الإنهاء؟',cmpP:'قارن المبلغين بنفس مدة خدمتك الحالية',
+ cmpT:'📄 إذا أنهى صاحب العمل العقد',cmpR:'✋ إذا استقلت الآن',cmpBadge:'اختيارك الحالي',
+ chartH:'نمو مكافأتك مع كل سنة خدمة',chartP:'اضغط على أي عمود لرؤية القيمة عند تلك النقطة · العمود الذهبي يقارب وضعك الحالي',
+ stepsH:'الحساب خطوة بخطوة',stepsP:'كيف وصلنا إلى هذا الرقم — بشفافية كاملة',
+ shareCopy:'🔗 نسخ رابط هذه النتيجة',shareWa:'📲 مشاركة عبر واتساب',sharePrint:'🖨️ طباعة / حفظ PDF',copied:'✓ تم نسخ الرابط',
+ faqH:'الأسئلة الشائعة حول مكافأة نهاية الخدمة في الكويت',faqP:'ابحث أو تصفّح — كل الأجوبة معروضة أمامك',
+ faqPh:'🔍 ابحث… مثال: استقالة، سقف، منزلي، إجازة',faqOpen:'فتح الكل',faqClose:'طي الكل',
+ lawH:'فهم نظام نهاية الخدمة في قانون العمل الكويتي',detailsP2:'المرجع القانوني المبسط الذي تعتمد عليه الحاسبة',
+ lawIntro:'يوجّب قانون العمل الكويتي — وتحديداً <b>المادة 51</b> — على أصحاب العمل في القطاع الخاص صرف منفعة مالية إلزامية عند انتهاء علاقة العمل، تُعرف بـ«مكافأة نهاية الخدمة». وتتوقف قيمتها على ثلاثة عوامل: الراتب الشهري (الأساسي + العلاقات الثابتة)، ومدة الخدمة الفعلية، وطريقة انتهاء العقد (استقالة أم إنهاء).',
+ law1h:'1) تحديد الأجر اليومي',law1p:'يُحتسب الشهر القانوني في الكويت بواقع 26 يوم عمل:',law1f:'الأجر اليومي = الراتب الشهري ÷ 26',
+ law2h:'2) الاحتساب حسب مدة الخدمة',
+ law2l1:'أول 5 سنوات: 15 يوماً من الأجر اليومي عن كل سنة خدمة.',
+ law2l2:'بعد 5 سنوات: 30 يوماً (شهر كامل) عن كل سنة إضافية.',
+ law2l3:'سقف قانوني: لا تتجاوز المكافأة أجر 18 شهراً مهما طالت المدة.',
+ law3h:'3) جدول الاستقالة مقابل الإنهاء',
+ tblY:'سنوات الخدمة المكتملة',tblT:'عند إنهاء صاحب العمل',tblR:'عند الاستقالة',
+ tr1:'أقل من 3 سنوات',tr1b:'0% (لا استحقاق)',tr2:'من 3 إلى 5 سنوات',tr2b:'50% (النصف)',
+ tr3:'من 5 إلى 10 سنوات',tr3b:'66.6% (الثلثان)',tr4:'أكثر من 10 سنوات',tr4b:'100% (كاملة)',
+ law4h:'4) الإجازات السنوية غير المستخدمة',law4p:'تُحوَّل الأيام المتراكمة إلى نقد بالأجر اليومي وتُضاف إلى التسوية النهائية:',law4f:'قيمة الإجازة = الأيام غير المستخدمة × الأجر اليومي',
+ law5h:'5) العامل المنزلي (قانون 68/2015)',
+ domBox:'مكافأة تعادل <b>أجر شهر عن كل سنة خدمة</b>، وتُستحق عند إنهاء صاحب العمل للعقد أو انتهاء مدته، وقد تتأثر عند الاستقالة قبل انتهاء العقد — راجع عقدك أو الهيئة العامة للقوى العاملة عند الشك.',
+ law6h:'6) مستحقات أخرى شائعة عند نهاية الخدمة',
+ law6l1:'أجر مهلة الإخطار إذا تم الإنهاء دون إشعار مسبق (المادة 44).',
+ law6l2:'تذكرة العودة إلى الوطن لغير الكويتيين عند انتهاء الخدمة.',
+ law6l3:'أي رواتب أو بدلات مستحقة غير مدفوعة، والخصومات الموثقة فقط.',
+ lawDisc:'⚠️ إخلاء مسؤولية قانوني: توفر هذه الحاسبة تقديراً آلياً بناءً على تفسير عام لقانون العمل الكويتي رقم 6/2010 (قطاع خاص، قاسم 26 يوماً، سقف 18 شهراً) وقانون 68/2015 للعمالة المنزلية. قد تختلف المبالغ النهائية بحسب بنود عقدك ولوائح الشركة والقرارات المعمول بها من الهيئة العامة للقوى العاملة. للنزاعات الرسمية يُرجى استشارة محامٍ مرخص في الكويت.',
+ footDisc:'هذه الأداة تقديرية فقط وتستند إلى قانون العمل الكويتي رقم 6/2010 (القطاع الخاص: قسمة 26 يوماً، سقف 18 شهراً) وقانون 68/2015 (العمالة المنزلية). أسعار تحويل العملات (INR / PKR / PHP / EGP / SAR) والذهب تقريبية وقابلة للتعديل يدوياً أعلاه. قد تختلف تسويتك النهائية عن النتائج المعروضة.',
+ footCr:'💚 حاسبة مكافأة نهاية الخدمة — الكويت · جميع الحسابات تجري داخل متصفحك',
+ stInd:'مكافأة نهاية الخدمة',stTot:'إجمالي التسوية الكاملة',upTitle:'أعلى الصفحة'
+},
+en:{
+ chipTop:'🇰🇼 Kuwait · Free tool · Updated 2026',
+ h1a:'Calculator for your',h1b:'end-of-service indemnity',h1c:'and full settlement in Kuwait',
+ heroP:"Planning to resign or facing a contract termination? Instantly calculate your end-of-service indemnity and full final settlement in Kuwaiti Dinars under Labor Law 6/2010 (private sector) and Law 68/2015 (domestic workers) — every result updates live on one single page.",
+ b1:'✔ Based on Kuwait Labor Law',b2:'✔ Instant live results',b3:'✔ Full settlement + step-by-step math',
+ detailsH:'Your details',detailsP:'Adjust the values and watch every result update instantly',
+ sectorLbl:'Employment sector',sectorPriv:'Private sector',sectorPrivS:'Companies & firms · Labor Law 6/2010',
+ sectorDom:'Domestic worker',sectorDomS:'Household staff · Law 68/2015',
+ endLbl:'How is the job ending?',endT:'Employer ends the contract',endTS:'Termination or contract expiry',
+ endR:'I resign',endRS:'Voluntary resignation',
+ salaryLbl:'Monthly salary',salaryHint:'(basic + fixed allowances)',kwd:'KD',
+ svcLbl:'Length of service',quickB:'Years & months',quickS:'Quick estimate',
+ datesB:'Joining date',datesS:'Exact to the day',
+ fJoin:'Joining date',fLast:'Last working day',fYears:'Years of service',fMonths:'Extra months',
+ resLbl:'Your estimated indemnity',resRing:'of indemnity',perMonthLbl:'📊 Per month of service:',
+ curH:'Equivalent in currencies & gold',curP:"Approximate conversions — adjust the rates to today's price",
+ cInr:'Indian Rupee (INR)',cPkr:'Pakistani Rupee (PKR)',cPhp:'Philippine Peso (PHP)',cEgp:'Egyptian Pound (EGP)',cSar:'Saudi Riyal (SAR)',
+ rInrLbl:'KD → ₹',rPkrLbl:'KD → ₨',rPhpLbl:'KD → ₱',rEgpLbl:'KD → E£',rSarLbl:'KD → SR',rGoldLbl:'Gold KD/g',
+ ratesLbl:'⚙️ Adjust rates:',ratesNote:'Approximate, unofficial rates (editable) — adjust them for a more accurate conversion.',
+ trackH:'Your journey to full entitlement',trackP:'Your entitlement percentage rises the longer you serve',
+ d3:'3 yrs',d5:'5 yrs',d10:'10 yrs',
+ settleH:'Your full final settlement',settleP:'Indemnity is only part of what you are owed — add the rest to see your total',
+ tLeave:'🌴 Unused annual leave',tLeaveS:'Cashed out at your daily wage',unitDay:'days',
+ tNotice:'📣 Notice pay owed to you',tNoticeS:'If ended without notice (Art. 44)',unitMonth:'months',
+ tUnpaid:'💵 Unpaid salary',tUnpaidS:'Days worked but not yet paid',
+ tOther:'➕ Other dues',tOtherS:'Air ticket, bonus, allowances',
+ tDed:'➖ Deductions',tDedS:'Loans & advances owed to your employer',
+ calcAsIs:'Added as-is',calcDed:'Deducted from the total',
+ bPay:'End-of-service indemnity',bLeave:'Unused leave payout',bNotice:'Notice-period pay',
+ bUnpaid:'Unpaid salary',bOther:'Other dues',bDed:'Deductions',bTotal:'💵 Total you will receive',
+ cmpH:'Resign or wait to be terminated?',cmpP:'Compare both amounts at your current service length',
+ cmpT:'📄 If the employer ends the contract',cmpR:'✋ If you resign now',cmpBadge:'Current scenario',
+ chartH:'How your indemnity grows each year',chartP:'Tap any bar to see the payout at that point — the gold bar is closest to you',
+ stepsH:'Step-by-step calculation',stepsP:'How we reached this number — full transparency',
+ shareCopy:'🔗 Copy link to this result',shareWa:'📲 Share on WhatsApp',sharePrint:'🖨️ Print / Save PDF',copied:'✓ Link copied',
+ faqH:'Kuwait end-of-service indemnity — FAQ',faqP:'Search or browse — every answer is open on this page',
+ faqPh:'🔍 Search… e.g. resign, cap, domestic, leave',faqOpen:'Expand all',faqClose:'Collapse all',
+ lawH:"Understanding Kuwait's end-of-service benefits",detailsP2:'The simplified legal reference this calculator is based on',
+ lawIntro:"Kuwait Labor Law — specifically <b>Article 51</b> — requires employers in the private sector to pay a mandatory end-of-service benefit when employment ends. Its value depends on three factors: the monthly salary (basic + fixed allowances), the actual length of service, and how the job ends (resignation vs termination).",
+ law1h:'1) Daily wage',law1p:'The legal working month in Kuwait equals 26 working days:',law1f:'Daily Wage = Monthly Salary ÷ 26',
+ law2h:'2) Accrual by service length',
+ law2l1:'First 5 years: 15 days of the daily wage per year of service.',
+ law2l2:'After 5 years: 30 days (a full month) per additional year.',
+ law2l3:'Legal cap: the indemnity never exceeds 18 months of pay.',
+ law3h:'3) Resignation vs termination',
+ tblY:'Years of service completed',tblT:'If employer terminates',tblR:'If you resign',
+ tr1:'Less than 3 years',tr1b:'0% (No entitlement)',tr2:'3 to 5 years',tr2b:'50% (Half)',
+ tr3:'5 to 10 years',tr3b:'66.6% (Two-thirds)',tr4:'Over 10 years',tr4b:'100% (Full)',
+ law4h:'4) Unused annual leave',law4p:'Accumulated days are converted to cash at the daily wage and added to the final settlement:',law4f:'Leave Pay = Unused Days × Daily Wage',
+ law5h:'5) Domestic workers (Law 68/2015)',
+ domBox:'A benefit equal to <b>one month of wage per year of service</b>, due mainly when the employer ends the contract or it expires; resignation before the contract ends may affect it — check your contract or the Public Authority of Manpower.',
+ law6h:'6) Other common dues at end of service',
+ law6l1:'Notice pay if the contract was ended without prior notice (Art. 44).',
+ law6l2:'A return ticket to the home country for non-Kuwaitis.',
+ law6l3:'Any unpaid salaries or allowances — with only documented deductions allowed.',
+ lawDisc:'⚠️ Legal disclaimer: This calculator provides an automated estimate based on a general interpretation of Kuwait Labor Law No. 6/2010 (private sector: 26-day divisor, 18-month cap) and Law No. 68/2015 for domestic workers. Final amounts may differ depending on your contract, company policy and PAM regulations. For formal disputes consult a licensed lawyer in Kuwait.',
+ footDisc:'This tool is an estimate only, based on Kuwait Labor Law No. 6/2010 (private sector: 26-day divisor, 18-month cap) and Law 68/2015 (domestic workers). Currency (INR / PKR / PHP / EGP / SAR) and gold rates are approximate and editable above. Your final settlement may differ.',
+ footCr:'💚 Kuwait end-of-service indemnity calculator — all math runs inside your browser',
+ stInd:'Indemnity',stTot:'Full settlement total',upTitle:'Back to top'
+}};
+
+/* ترجمة الأسئلة الشائعة (مفاتيح faq1q..faq20q و faq1a..faq20a) */
+const FAQ_AR={
+faq1q:'1. ما هي مكافأة نهاية الخدمة في الكويت؟',faq1a:'مكافأة نقدية إلزامية يستحقها العامل عند انتهاء علاقة عمله بالاستقالة أو الإنهاء أو انتهاء مدة العقد. ينظمها في القطاع الخاص قانون العمل رقم 6 لسنة 2010 (خاصة المادة 51)، وفي العمالة المنزلية القانون رقم 68 لسنة 2015.',
+faq2q:'2. كيف تُحسب مكافأة نهاية الخدمة للقطاع الخاص؟',faq2a:'وفق المادة 51: 15 يوم أجر عن كل سنة من السنوات الخمس الأولى، و30 يوماً (شهر كامل) عن كل سنة تالية، على أساس الأجر اليومي (الراتب الشهري ÷ 26)، وبحد أقصى 18 شهراً من الأجر.',
+faq3q:'3. هل تُحسب المكافأة على الراتب الأساسي أم الإجمالي؟',faq3a:'الأساس القانوني هو الأجر الشامل: الأساسي + العلاقات الثابتة المستمرة (وفق تعريف الأجر في المادة 62)، بينما لا تدخل العمولات والمكافآت المتقطعة عادةً في الحساب. أدخل في الحاسبة راتبك الأساسي مع علاقاتك الثابتة.',
+faq4q:'4. ماذا يحدث لمكافأتي إذا استقلت قبل 3 سنوات؟',faq4a:'لا يستحق العامل مكافأة إذا استقال قبل إكمال 3 سنوات خدمة متصلة (0%) — ما لم يكن الإنهاء صادراً من صاحب العمل.',
+faq5q:'5. كم أستحق إذا استقلت بعد 3 سنوات؟',faq5a:'نصف المكافأة الكاملة (50%).',
+faq6q:'6. كم أستحق إذا استقلت بعد 5 سنوات؟',faq6a:'ثلثا المكافأة الكاملة (66.6%).',
+faq7q:'7. هل أحصل على كامل المكافأة إذا استقلت بعد 10 سنوات؟',faq7a:'نعم؛ الاستقالة بعد إكمال 10 سنوات خدمة تمنحك 100% من كامل المكافأة.',
+faq8q:'8. ماذا لو أنهى صاحب العمل العقد؟',faq8a:'تستحق 100% من المكافأة الكاملة، إضافة إلى أجر مهلة الإخطار إذا لم يُخطر مسبقاً، والإجازات غير المستخدمة، وتذكرة العودة لغير الكويتيين، وقد تستحق تعويضاً إضافياً إذا كان الإنهاء تعسفياً.',
+faq9q:'9. هل يوجد حد أقصى لمكافأة نهاية الخدمة؟',faq9a:'نعم؛ لا تتجاوز المكافأة أجر 18 شهراً من آخر أجر للعامل مهما بلغت مدة خدمته (المادة 51).',
+faq10q:'10. كيف يؤثر العقد محدد المدة على المكافأة؟',faq10a:'قواعد المكافأة واحدة للعقود محددة وغير محددة المدة. أما إنهاء العقد محدد المدة من صاحب العمل قبل انتهائه لغير الأسباب المشروعة فيعطي العامل حقاً في تعويض إضافي.',
+faq11q:'11. هل يستحق العامل بدوام جزئي مكافأة نهاية خدمة؟',faq11a:'نعم، ويُحتسب أجره اليومي بما يتناسب مع أيام أو ساعات عمله الفعلية.',
+faq12q:'12. هل يمكن لصاحب العمل خصم مبالغ من المكافأة؟',faq12a:'لا يجوز الخصم إلا للدين الثابت (كالسلف والقروض الموثقة) وبقدره فقط، ولا يصح الخصم تعسفاً أو مقابل ادعاءات غير مثبتة.',
+faq13q:'13. هل أفقد كامل مكافأتي إذا فُصلت من العمل؟',faq13a:'الفصل لسبب مشروع مثبت (بعد تحقيق موثق وفق حالات القانون) قد يُسقط بعض الحقوق، أما الفصل التعسفي فلا يُسقط المكافأة بل قد يستحق معها تعويضاً إضافياً أمام المحكمة العمالية.',
+faq14q:'14. هل تُحتسب فترة التجربة ضمن مدة الخدمة؟',faq14a:'نعم تُحتسب ضمن المدة، علماً بأن الحد الأقصى لفترة التجربة في القطاع الخاص 100 يوم عمل.',
+faq15q:'15. ماذا أفعل إذا أخطأ صاحب العمل في حساب مستحقاتي؟',faq15a:'حاوِل التسوية ودياً أولاً، ثم قدّم شكوى إلى الهيئة العامة للقوى العاملة (قطاع علاقات العمل)، وإن لم تُحل تُحال إلى المحكمة العمالية. احتفظ بنسخة من العقد وقسائم الرواتب وأي مراسلات.',
+faq16q:'16. هل تُحتسب الإجازات بدون أجر ضمن مدة الخدمة؟',faq16a:'لا؛ تُستبعد أيام الإجازة بدون أجر من مدة الخدمة عند احتساب المكافأة.',
+faq17q:'17. لماذا تقسم الحاسبة الراتب على 26؟',faq17a:'لأن الشهر القانوني في الكويت يُحتسب بواقع 26 يوم عمل، وهو المعيار المعتمد لاستخراج الأجر اليومي في حسابات نهاية الخدمة.',
+faq18q:'18. كيف تُحسب مكافأة العامل المنزلي؟',faq18a:'وفق قانون 68/2015: مكافأة تعادل أجر شهر عن كل سنة خدمة، وتُستحق أساساً عند إنهاء صاحب العمل للعقد أو انتهاء مدته، وقد تتأثر عند الاستقالة قبل انتهاء العقد.',
+faq19q:'19. هل يحصل الكويتيون على مكافأة نهاية خدمة مع المعاش؟',faq19a:'العاملون الكويتيون مشمولون بنظام التأمينات الاجتماعية، وقانون العمل 6/2010 يطبَّق أساساً على غير الكويتيين في القطاع الخاص، بينما تُنظَّم مستحقات الكويتيين بقوانين التأمينات وبنود عقودهم.',
+faq20q:'20. هل تُدفع الإجازات المتراكمة منفصلة عن المكافأة؟',faq20a:'نعم؛ تُصرف الأيام المتراكمة نقداً بالأجر اليومي وتُضاف إلى التسوية النهائية بشكل مستقل عن المكافأة — أدخلها في خانة «الإجازات غير المستخدمة» أعلاه.'};
+const FAQ_EN={
+faq1q:'1. What is end-of-service indemnity in Kuwait?',faq1a:"A statutory payment owed to employees in Kuwait's private and domestic sectors when employment ends by termination or resignation. It is governed by Labor Law No. 6/2010 (private sector, mainly Article 51) and Law No. 68/2015 (domestic workers).",
+faq2q:'2. How is indemnity calculated for private-sector workers?',faq2a:'Per Article 51: 15 days of wage per year for the first 5 years and 30 days (a full month) per year after that, based on the daily wage (monthly salary ÷ 26), capped at 18 months of pay.',
+faq3q:'3. Is the calculation based on basic or total salary?',faq3a:'The legal basis is the comprehensive wage: basic + fixed recurring allowances (per the wage definition in Article 62). Commissions and one-off bonuses are usually excluded. Enter your basic salary plus fixed allowances.',
+faq4q:'4. What happens if I resign before 3 years?',faq4a:'You earn no indemnity if you resign before completing 3 years of continuous service (0%) — unless the employer is the one ending the contract.',
+faq5q:'5. How much do I get if I resign between 3 and 5 years?',faq5a:'Half of the full indemnity (50%).',
+faq6q:'6. How much between 5 and 10 years?',faq6a:'Two-thirds of the full indemnity (66.6%).',
+faq7q:'7. Do I get the full indemnity if I resign after 10 years?',faq7a:'Yes — resigning after 10 completed years grants you 100% of the full indemnity.',
+faq8q:'8. What if my employer terminates the contract?',faq8a:'You are entitled to 100% of the full indemnity, plus notice pay if you were not notified in advance, unused leave, a return ticket for non-Kuwaitis, and possibly extra compensation if the termination was arbitrary.',
+faq9q:'9. Is there a maximum limit on payouts?',faq9a:'Yes — the indemnity cannot exceed 18 months of your last wage no matter how long you served (Article 51).',
+faq10q:'10. How does a fixed-term contract affect indemnity?',faq10a:'Indemnity rules are the same for fixed and open contracts. However, employer termination of a fixed-term contract before its end (without lawful cause) can give the worker additional compensation.',
+faq11q:'11. Are part-time employees entitled to indemnity?',faq11a:'Yes — their daily wage is pro-rated to their actual working days or hours.',
+faq12q:'12. Can the employer deduct from my indemnity?',faq12a:'Only for a proven debt (documented loans/advances) and only to that amount — arbitrary deductions are not allowed.',
+faq13q:'13. Can I lose my entire indemnity if I am fired?',faq13a:'Dismissal for a proven lawful cause (after a documented investigation) may forfeit some rights, but arbitrary dismissal does not erase the indemnity and may add compensation via the Labor Court.',
+faq14q:'14. Does the probation period count toward service?',faq14a:'Yes, it counts toward service; the maximum probation in the private sector is 100 working days.',
+faq15q:'15. What if my employer miscalculates my settlement?',faq15a:'Try an amicable settlement first, then file a complaint with the Public Authority of Manpower (Labor Relations), which can escalate to the Labor Court. Keep your contract, payslips and any correspondence.',
+faq16q:'16. Does unpaid leave count toward service?',faq16a:'No — unpaid leave days are excluded from the service period when computing indemnity.',
+faq17q:'17. Why divide the salary by 26?',faq17a:'The legal working month in Kuwait is counted as 26 working days — the standard basis for deriving the daily wage in end-of-service calculations.',
+faq18q:'18. How is domestic worker indemnity calculated?',faq18a:'Under Law 68/2015: one month of wage for each year of service, mainly due when the employer ends the contract or it expires; resignation before the contract ends may affect it.',
+faq19q:'19. Do Kuwaitis get indemnity as well as a pension?',faq19a:'Kuwaiti employees are covered by the social insurance system; Law 6/2010 applies mainly to non-Kuwaitis in the private sector, while Kuwaiti entitlements are governed by insurance rules and their contracts.',
+faq20q:'20. Is unused leave paid separately from indemnity?',faq20a:'Yes — accumulated days are cashed out at the daily wage and added to the final settlement independently of the indemnity; enter them above under "Unused annual leave".'};
+Object.assign(I18N.ar,FAQ_AR);Object.assign(I18N.en,FAQ_EN);
+
+/* ═══════════ الحالة العامة ═══════════ */
+const MONTHS={ar:['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
+              en:['January','February','March','April','May','June','July','August','September','October','November','December']};
+const rates={inr:311.51,pkr:890,php:199.25,egp:160,sar:12.2,gold:42.28};
+
+let state={sector:'private',ending:'resigned',salary:2250,mode:'dates',qy:9,qm:5,join:'',last:'',lv:0,np:0,us:0,od:0,dd:0};
+let chartSel=null;
+
+/* ═══════════ أدوات التاريخ والمدة ═══════════ */
+const toISO=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const parseISO=s=>{if(!s)return null;const p=s.split('-');if(p.length!==3)return null;return new Date(+p[0],+p[1]-1,+p[2]);};
+(function initDates(){const t=new Date();const j=new Date(t);j.setFullYear(j.getFullYear()-9);j.setMonth(j.getMonth()-5);state.join=toISO(j);state.last=toISO(t);})();
+
+function diffYMD(a,b){let y=b.getFullYear()-a.getFullYear(),m=b.getMonth()-a.getMonth(),d=b.getDate()-a.getDate();
+ if(d<0){m--;d+=new Date(b.getFullYear(),b.getMonth(),0).getDate();}
+ if(m<0){y--;m+=12;}return{y,m,d};}
+
+function durPhrase(y,m,d,withDays){
+ if(lang==='en'){
+  const p=[];
+  if(y>0)p.push(y+(y===1?' year':' years'));
+  if(m>0)p.push(m+(m===1?' month':' months'));
+  if(withDays&&d>0)p.push(d+(d===1?' day':' days'));
+  return p.length?p.join(', '):'less than a month';
+ }
+ const unitWord=(n,s1,s2,pl,gn)=>{if(n===1)return s1;if(n===2)return s2;if(n>=3&&n<=10)return n+' '+pl;return n+' '+gn;};
+ const p=[];
+ if(y>0)p.push(unitWord(y,'سنة','سنتان','سنوات','سنة'));
+ if(m>0)p.push(unitWord(m,'شهر','شهران','أشهر','شهراً'));
+ if(withDays&&d>0)p.push(unitWord(d,'يوم','يومان','أيام','يوماً'));
+ return p.length?p.join(' و '):'أقل من شهر';}
+const monthsPhrase=mo=>durPhrase(Math.floor(mo/12),mo%12,0,false);
+
+function serviceInfo(){
+ if(state.mode==='quick'){
+  const y=Math.max(0,Math.round(state.qy||0)),m=Math.max(0,Math.round(state.qm||0));
+  return{valid:true,months:y*12+m,label:durPhrase(y,m,0,false)};
+ }
+ const a=parseISO(state.join),b=parseISO(state.last);
+ if(!a||!b)return{valid:false,err:'dates',months:0,label:''};
+ if(b<=a)return{valid:false,err:'order',months:0,label:''};
+ const r=diffYMD(a,b);
+ return{valid:true,months:r.y*12+r.m+r.d/30.4375,label:durPhrase(r.y,r.m,r.d,true)};
+}
+
+/* ═══════════ محرك الحساب ═══════════ */
+function pctFor(months,ending,sector){
+ if(sector==='domestic')return ending==='terminated'?1:0;
+ if(ending==='terminated')return 1;
+ if(months<36)return 0;
+ if(months<60)return .5;
+ if(months<120)return 2/3;
+ return 1;}
+const pctLabel=p=>p>=0.999?'100%':p>=0.66?'66.6%':p>=0.49?'50%':'0%';
+function calcCore(months,salary,sector,ending){
+ const daily=salary/26;let days=0,full=0,capped=false;
+ if(sector==='private'){
+  days=Math.min(months,60)*1.25+Math.max(0,months-60)*2.5;
+  const raw=days*daily,cap=salary*18;
+  full=Math.min(raw,cap);capped=raw>cap+1e-9;
+ }else{full=salary*months/12;}
+ const pct=pctFor(months,ending,sector);
+ return{daily,days,full,capped,pct,payout:full*pct};}
+
+/* ═══════════ التقويم ═══════════ */
+const ymd=d=>''+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
+function gcalLink(d,title){
+ const s=ymd(d),e=new Date(d);e.setDate(e.getDate()+1);
+ return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+s+'/'+ymd(e)+'&details='+encodeURIComponent('Kuwait indemnity calculator');}
+function icsHref(d,title){
+ const e=new Date(d);e.setDate(e.getDate()+1);const now=new Date();
+ const stamp=now.getUTCFullYear()+String(now.getUTCMonth()+1).padStart(2,'0')+String(now.getUTCDate()).padStart(2,'0')+'T000000Z';
+ const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//KWIndemnity//AR','BEGIN:VEVENT','UID:'+Date.now()+'@kw-indemnity','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+ymd(d),'DTEND;VALUE=DATE:'+ymd(e),'SUMMARY:'+title,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+ return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);}
+
+/* ═══════════ مسار الاستحقاق + المعلم ═══════════ */
+function renderMilestone(c,svc){
+ const box=$('milestoneBox');const months=svc.months;
+ const sal=Math.max(0,+state.salary||0);
+ const gain=calcCore(months+12,sal,state.sector,'terminated').payout-calcCore(months,sal,state.sector,'terminated').payout;
+ if(state.sector==='domestic'){
+  if(state.ending==='resigned'){box.innerHTML='<div class="note warn">'+L('⚠️ وفق قانون 68/2015 تُستحق مكافأة العامل المنزلي (شهر عن كل سنة) عند إنهاء صاحب العمل للعقد أو انتهاء مدته — قد تُسقطها الاستقالة قبل انتهاء العقد ما لم ينص عقدك على غير ذلك.',"⚠️ Under Law 68/2015 the domestic worker's indemnity (one month per year) is due when the employer ends the contract or it expires — resigning before the contract ends may forfeit it unless your contract says otherwise.")+'</div>';return;}
+  box.innerHTML='<div class="note good">💯 '+L('أنت تستحق كامل مكافأتك — وكل سنة خدمة إضافية تضيف نحو','You get 100% of your indemnity — each extra year adds about')+' <b>'+fmt(sal)+' '+L('د.ك','KD')+'</b> ('+L('أجر شهر عن كل سنة','one month per year')+').</div>';return;}
+ if(state.ending==='terminated'){
+  box.innerHTML='<div class="note good">💯 '+L('أنت تستحق <b>100%</b> من كامل مكافأتك — وكل سنة خدمة إضافية تضيف نحو','You get <b>100%</b> of the full indemnity — each extra year adds about')+' <b>'+fmt(gain)+' '+L('د.ك','KD')+'</b>.</div>';return;}
+ let target=null,pct=0;
+ if(months<36){target=36;pct=.5;}else if(months<60){target=60;pct=2/3;}else if(months<120){target=120;pct=1;}
+ if(target===null){box.innerHTML='<div class="note good">💯 '+L('ممتاز! أنت تستحق <b>100%</b> من كامل مكافأتك بعد إكمال 10 سنوات — وكل سنة إضافية تضيف نحو','Great! You get <b>100%</b> of the full indemnity after 10 completed years — each extra year adds about')+' <b>'+fmt(gain)+' '+L('د.ك','KD')+'</b>.</div>';return;}
+ const at=calcCore(target,sal,'private','resigned').payout;
+ const extra=Math.max(0,at-c.payout),away=target-months;
+ let when='',cal='';
+ if(state.mode==='dates'){
+  const j=parseISO(state.join);
+  if(j){const d=new Date(j);d.setMonth(d.getMonth()+target);
+   const dstr=d.getDate()+' '+MONTHS[lang][d.getMonth()]+' '+d.getFullYear();
+   when=L('حتى','until')+' <b>'+dstr+'</b>';
+   const title=L('موعد استحقاق '+Math.round(pct*100)+'% من مكافأة نهاية الخدمة — الكويت',Math.round(pct*100)+'% indemnity milestone — Kuwait');
+   cal='<div class="cal-btns"><a class="btn gold sm" target="_blank" rel="noopener" href="'+gcalLink(d,title)+'">'+L('📅 إضافة إلى تقويم Google','📅 Add to Google Calendar')+'</a><a class="btn ghost sm" download="indemnity-milestone.ics" href="'+icsHref(d,title)+'">'+L('⬇️ ملف التقويم (iPhone / Outlook)','⬇️ Calendar file (iPhone/Outlook)')+'</a></div>';}
+ }else{
+  when=L('مدة <b>'+monthsPhrase(away)+'</b> إضافية (عند إكمال '+(target/12)+' سنوات)','another <b>'+monthsPhrase(away)+'</b> (upon completing '+(target/12)+' years)');
+ }
+ box.innerHTML='<div class="note tip">🎯 '+L('استمر بالعمل '+when+' لترفع استحقاقك إلى <b>'+Math.round(pct*100)+'%</b> من المكافأة — أي <b>+'+fmt(extra)+' د.ك</b> إضافية فوق ما تستحقه الآن.','Keep working '+when+' to raise your entitlement to <b>'+Math.round(pct*100)+'%</b> — that is <b>+'+fmt(extra)+' KD</b> more than you get now.')+'</div>'+cal;
+}
+
+/* ═══════════ الرسم البياني ═══════════ */
+function renderChart(months){
+ let useEnding=state.ending,note='';
+ if(state.sector==='domestic'&&state.ending==='resigned'){useEnding='terminated';note=L('⚠️ الاستقالة قد تُسقط مكافأة العامل المنزلي — يوضح الرسم القيمة عند إنهاء صاحب العمل للعقد.',"⚠️ Resignation may forfeit a domestic worker's indemnity — bars show the value if the employer ends the contract.");}
+ else if(useEnding==='resigned')note=L('القيم محسوبة على أساس الاستقالة: 0% قبل 3 سنوات · 50% حتى 5 · 67% حتى 10 · 100% بعد 10 سنوات.','Bars assume resignation: 0% before 3 yrs · 50% up to 5 · 67% up to 10 · 100% after 10.');
+ else note=L('القيم محسوبة على أساس إنهاء صاحب العمل للعقد (100% في جميع الأحوال).','Bars assume employer termination (100% at all lengths).');
+ $('chartNote').textContent=note;
+ const sal=Math.max(0,+state.salary||0);
+ const vals=[];for(let k=1;k<=20;k++)vals.push(calcCore(k*12,sal,state.sector,useEnding).payout);
+ const max=Math.max(...vals,1);
+ const youIdx=months>=6?Math.min(20,Math.max(1,Math.round(months/12))):0;
+ if(chartSel===null)chartSel=youIdx||1;
+ let html='';
+ vals.forEach((v,i)=>{const k=i+1;
+  html+='<div class="bar'+(v<=0.0005?' zero':'')+(k===youIdx?' you':'')+(k===chartSel?' active':'')+'" data-k="'+k+'" style="height:'+Math.max(1.5,v/max*100)+'%"><span class="bv">'+k+' '+(k===1?L('سنة','yr'):L('سنوات','yrs'))+': '+fmt(v)+' '+L('د.ك','KD')+'</span></div>';});
+ $('chartBars').innerHTML=html;
+ let lab='';for(let k=1;k<=20;k++)lab+='<span class="yl">'+([1,5,10,15,20].includes(k)?k:'')+'</span>';
+ $('chartLabels').innerHTML=lab;
+ const v=vals[chartSel-1]||0;
+ let info=L('بعد <b>'+chartSel+(chartSel===1?' سنة':' سنوات')+'</b> كاملة من الخدمة: <b>'+fmt(v)+' د.ك</b>','After <b>'+chartSel+(chartSel===1?' year':' years')+'</b> of service: <b>'+fmt(v)+' KD</b>');
+ if(months>0)info+=L(' · أنت الآن عند '+fmt(months/12,2)+' سنة',' · you are now at '+fmt(months/12,2)+' yrs');
+ $('chartInfo').innerHTML=info;
+}
+
+/* ═══════════ خطوات الحساب ═══════════ */
+function renderSteps(c,svc){
+ const months=svc.months;const s=[];const KD=L('د.ك','KD');
+ if(state.sector==='private'){
+  s.push([L('الأجر اليومي','Daily wage'),L('الراتب الشهري ÷ 26 يوم عمل (الشهر القانوني في الكويت)','Monthly salary ÷ 26 working days (the legal month in Kuwait)'),fmt(c.salary)+' '+KD+' ÷ 26 = <b>'+fmt(c.daily)+' '+KD+L(' / يوم',' / day')+'</b>']);
+  s.push([L('الأيام المكتسبة','Days earned'),L('15 يوماً عن كل سنة من السنوات الخمس الأولى، و30 يوماً عن كل سنة تالية','15 days per year for the first 5 years, 30 days per year after that'),
+   L('أول 5 سنوات: '+fmt(Math.min(months,60)*1.25)+' يوم + بعد 5 سنوات: '+fmt(Math.max(0,months-60)*2.5)+' يوم = <b>'+fmt(c.days)+' يوم</b>','First 5 yrs: '+fmt(Math.min(months,60)*1.25)+' days + after 5 yrs: '+fmt(Math.max(0,months-60)*2.5)+' days = <b>'+fmt(c.days)+' days</b>')]);
+  s.push([L('المكافأة الكاملة','Full indemnity'),
+   c.capped?L('بلغت السقف القانوني: 18 شهراً من الأجر ('+fmt(c.salary*18)+' د.ك)','Hit the legal cap: 18 months of pay ('+fmt(c.salary*18)+' KD)'):L('دون بلوغ السقف القانوني: 18 شهراً من الأجر ('+fmt(c.salary*18)+' د.ك)','Below the 18-month legal cap ('+fmt(c.salary*18)+' KD)'),
+   fmt(c.days)+' × '+fmt(c.daily)+' '+KD+' = <b>'+fmt(c.full)+' '+KD+'</b>']);
+  let reason;
+  if(state.ending==='terminated')reason=L('الإنهاء من صاحب العمل: 100% من المكافأة الكاملة','Employer termination: 100% of the full indemnity');
+  else{
+   if(months<36)reason=L('استقالة قبل 3 سنوات: لا يوجد استحقاق (0%)','Resignation before 3 years: no entitlement (0%)');
+   else if(months<60)reason=L('استقالة بعد 3–5 سنوات: النصف (50%)','Resignation after 3–5 years: half (50%)');
+   else if(months<120)reason=L('استقالة بعد 5–10 سنوات: الثلثان (66.6%)','Resignation after 5–10 years: two-thirds (66.6%)');
+   else reason=L('استقالة بعد 10 سنوات: كامل المكافأة (100%)','Resignation after 10 years: full indemnity (100%)');}
+  s.push([L('حصتك النهائية','Your share'),reason,fmt(c.full)+' '+KD+' × '+pctLabel(c.pct)+' = <b>'+fmt(c.payout)+' '+KD+'</b>']);
+ }else{
+  s.push([L('القاعدة القانونية','Legal rule'),L('قانون العمالة المنزلية 68/2015: مكافأة تعادل أجر شهر عن كل سنة خدمة','Law 68/2015: a benefit equal to one month of wage per year of service'),L('الراتب '+fmt(c.salary)+' د.ك × كل سنة خدمة','Salary '+fmt(c.salary)+' KD × each year of service')]);
+  s.push([L('مدة الخدمة','Service length'),svc.label,fmt(months/12,2)+L(' سنة (',' yrs (')+Math.round(months)+L(' شهراً)',' months)')]);
+  s.push([L('المكافأة الكاملة','Full indemnity'),L('شهر عن كل سنة خدمة','One month per year of service'),fmt(months/12,2)+' × '+fmt(c.salary)+' '+KD+' = <b>'+fmt(c.full)+' '+KD+'</b>']);
+  s.push([L('حصتك النهائية','Your share'),
+   state.ending==='terminated'?L('تُستحق كاملة عند إنهاء صاحب العمل للعقد أو انتهاء مدته','Due in full when the employer ends the contract or it expires'):L('قد لا تُستحق عند الاستقالة قبل انتهاء العقد — راجع عقدك','May not be due if you resign before the contract ends — check your contract'),
+   '<b>'+fmt(c.payout)+' '+KD+'</b>']);
+ }
+ $('stepsBox').innerHTML=s.map((x,i)=>'<li><div class="st-n">'+(i+1)+'</div><div><h4>'+x[0]+'</h4><p class="st-d">'+x[1]+'</p><p class="st-f">'+x[2]+'</p></div></li>').join('');
+}
+
+/* ═══════════ التحديث الشامل ═══════════ */
+function render(){
+ const salary=Math.max(0,+state.salary||0);
+ const svc=serviceInfo();
+ const months=svc.months;
+ const c=calcCore(months,salary,state.sector,state.ending);
+
+ /* ملخص المدة */
+ if(svc.valid)$('svcSummary').textContent='⏱️ '+L('مدة خدمتك:','Your service:')+' '+svc.label;
+ else $('svcSummary').textContent='⚠️ '+(svc.err==='order'?L('آخر يوم عمل يجب أن يكون بعد تاريخ الالتحاق','Last working day must be after the joining date'):L('أدخل التاريخين','Enter both dates'));
+
+ /* بطاقة النتيجة */
+ const C=364.42;
+ $('ringFg').style.strokeDashoffset=C*(1-c.pct);
+ $('ringPct').textContent=Math.round(c.pct*100)+'%';
+ $('heroAmount').textContent=fmt(c.payout);
+ let meta=L('عن '+fmt(months/12,2)+' سنة خدمة · براتب '+fmt(salary)+' د.ك شهرياً','For '+fmt(months/12,2)+' yrs of service · at '+fmt(salary)+' KD/month');
+ if(salary>0)meta+=' · ≈ '+fmt(c.payout/salary,1)+L(' أشهر راتب',' months of salary');
+ $('heroMeta').textContent=meta;
+ $('heroPerMonth').textContent=fmt(months>0?c.payout/months:0);
+ $('chipSector').textContent=state.sector==='private'?L('🏢 القطاع الخاص · قانون 6/2010','🏢 Private sector · Law 6/2010'):L('🏠 عامل منزلي · قانون 68/2015','🏠 Domestic worker · Law 68/2015');
+ $('chipEnding').textContent=state.ending==='terminated'?L('📄 إنهاء من صاحب العمل','📄 Employer termination'):L('✋ استقالة طوعية','✋ Voluntary resignation');
+ let note='';
+ if(state.sector==='domestic'&&state.ending==='resigned')note='<div class="hero-warn">'+L('⚠️ وفق قانون 68/2015 تُستحق المكافأة عند إنهاء صاحب العمل للعقد أو انتهاء مدته — راجع الملاحظة أدناه.',"⚠️ Under Law 68/2015 the indemnity is due when the employer ends the contract or it expires — see the note below.")+'</div>';
+ else if(state.sector==='private'&&state.ending==='resigned'&&months<36&&svc.valid)note='<div class="hero-warn">'+L('⚠️ الاستقالة قبل إكمال 3 سنوات لا تمنح أي مكافأة وفق المادة 51.','⚠️ Resigning before completing 3 years earns no indemnity under Article 51.')+'</div>';
+ else if(!svc.valid)note='<div class="hero-warn">'+L('⚠️ تحقق من التواريخ: آخر يوم عمل يجب أن يكون بعد تاريخ الالتحاق.','⚠️ Check the dates: the last working day must be after the joining date.')+'</div>';
+ $('heroNote').innerHTML=note;
+
+ /* العملات والذهب */
+ const p=c.payout;
+ $('cvInr').textContent='₹ '+fmtI(p*rates.inr);
+ $('cvPkr').textContent='₨ '+fmtI(p*rates.pkr);
+ $('cvPhp').textContent='₱ '+fmtI(p*rates.php);
+ $('cvEgp').textContent=(lang==='ar'?'ج.م ':'E£ ')+fmtI(p*rates.egp);
+ $('cvSar').textContent=(lang==='ar'?'ر.س ':'SR ')+fmtI(p*rates.sar);
+ const g24=p/rates.gold,g22=g24*24/22,tola=g24/11.6638;
+ $('goldLine').innerHTML=lang==='ar'
+  ?'🪙 ما يعادل مكافأتك بالذهب: <b>'+fmt(g24,1)+' جرام</b> ذهب عيار 24 = '+fmt(g22,1)+' جرام عيار 22 · '+tola.toFixed(2)+' تولة · بسعر '+fmt(rates.gold,2)+' د.ك/جرام'
+  :'🪙 Your indemnity in gold: <b>'+fmt(g24,1)+' g</b> of 24K = '+fmt(g22,1)+' g of 22K · '+tola.toFixed(2)+' tola · at '+fmt(rates.gold,2)+' KD/g';
+
+ /* مسار الاستحقاق */
+ const pc=Math.min(months,120)/120*100;
+ $('trackFill').style.width=pc+'%';
+ $('youPin').style.insetInlineStart='calc('+pc+'% - 12px)';
+ const lbl=$('youPinLbl');lbl.style.insetInlineStart=pc+'%';
+ lbl.textContent=months>=120?L('أنت: 10+ سنوات','You: 10+ yrs'):(months>=12?L('أنت: ','You: ')+fmt(months/12,1)+L(' سنة',' yrs'):L('أنت: ','You: ')+Math.max(0,Math.round(months))+L(' شهر',' mo'));
+ renderMilestone(c,svc);
+
+ /* التسوية */
+ const leaveVal=state.lv*c.daily,noticeVal=state.np*salary;
+ $('lvCalc').textContent='= '+fmt(leaveVal)+' '+L('د.ك','KD');
+ $('npCalc').textContent='= '+fmt(noticeVal)+' '+L('د.ك','KD');
+ $('bkPayLbl').textContent=t('bPay')+((state.ending==='resigned'&&c.pct<1&&state.sector==='private')?' ('+pctLabel(c.pct)+')':'');
+ $('bkPay').textContent=fmt(c.payout);
+ $('bkLeave').textContent=fmt(leaveVal);
+ $('bkNotice').textContent=fmt(noticeVal);
+ $('bkUnpaid').textContent=fmt(state.us);
+ $('bkOther').textContent=fmt(state.od);
+ $('bkDed').textContent='−'+fmt(state.dd);
+ const total=c.payout+leaveVal+noticeVal+state.us+state.od-state.dd;
+ $('settleTotal').textContent=fmt(total)+' '+L('د.ك','KD');
+ $('settleWarn').hidden=total>=0;
+
+ /* المقارنة */
+ const pT=calcCore(months,salary,state.sector,'terminated'),pR=calcCore(months,salary,state.sector,'resigned');
+ $('cmpT').textContent=fmt(pT.payout)+' '+L('د.ك','KD');
+ $('cmpR').textContent=fmt(pR.payout)+' '+L('د.ك','KD');
+ $('cmpTNote').textContent=state.sector==='domestic'?L('إنهاء صاحب العمل — استحقاق كامل (شهر/سنة)','Employer termination — full dues (1 month/year)'):L('100% من المبلغ الكامل','100% of the full amount');
+ let rn;
+ if(state.sector==='domestic')rn=L('قد لا تُستحق عند الاستقالة (قانون 68/2015)','May not be due on resignation (Law 68/2015)');
+ else if(months<36)rn=L('لا استحقاق قبل إكمال 3 سنوات','No entitlement before 3 completed years');
+ else rn=pctLabel(pR.pct)+L(' من المبلغ الكامل',' of the full amount');
+ if(pT.payout-pR.payout>0.0005)rn+=L(' · أقل بـ '+fmt(pT.payout-pR.payout)+' د.ك',' · '+fmt(pT.payout-pR.payout)+' KD less');
+ $('cmpRNote').textContent=rn;
+ $('tileT').classList.toggle('sel',state.ending==='terminated');
+ $('tileR').classList.toggle('sel',state.ending==='resigned');
+ $('cmpDiff').innerHTML=pT.payout-pR.payout>0.0005
+  ?L('الفرق بين الانتظار حتى الإنهاء والاستقالة الآن: <b>'+fmt(pT.payout-pR.payout)+' د.ك</b>','Waiting for termination instead of resigning now is worth: <b>'+fmt(pT.payout-pR.payout)+' KD</b>')
+  :(pT.payout>0?L('لا فرق — أنت تستحق كامل المكافأة في الحالتين','No difference — you get the full indemnity either way'):'');
+
+ renderChart(months);
+ renderSteps(c,svc);
+
+ $('stickyInd').textContent=fmt(c.payout);
+ $('stickyTot').textContent=fmt(total);
+ $('waBtn').href='https://wa.me/?text='+encodeURIComponent(
+  lang==='ar'
+  ?'💰 مكافأة نهاية الخدمة في الكويت\n'+fmt(c.payout)+' د.ك\n('+svc.label+' · براتب '+fmt(salary)+' د.ك)\nاحسب مكافأتك مجاناً: '+location.href
+  :'💰 Kuwait end-of-service indemnity\n'+fmt(c.payout)+' KD\n('+svc.label+' · at '+fmt(salary)+' KD)\nCalculate yours free: '+location.href);
+
+ scheduleHash();
+}
+
+/* ═══════════ الرابط القابل للمشاركة ═══════════ */
+let hashT;
+function scheduleHash(){clearTimeout(hashT);hashT=setTimeout(updateHash,400);}
+function updateHash(){
+ const p=new URLSearchParams();
+ p.set('s',state.sector==='private'?'p':'d');
+ p.set('e',state.ending==='terminated'?'t':'r');
+ p.set('sal',state.salary);
+ p.set('m',state.mode==='quick'?'q':'d');
+ if(state.mode==='quick'){p.set('y',state.qy);p.set('mo',state.qm);}
+ else{p.set('jd',state.join);p.set('ld',state.last);}
+ if(state.lv)p.set('lv',state.lv);if(state.np)p.set('np',state.np);
+ if(state.us)p.set('us',state.us);if(state.od)p.set('od',state.od);if(state.dd)p.set('dd',state.dd);
+ try{history.replaceState(null,'','#'+p.toString());}catch(e){}}
+function applyFromHash(){
+ if(!location.hash||location.hash.length<3)return;
+ const p=new URLSearchParams(location.hash.slice(1));
+ state.sector=p.get('s')==='d'?'domestic':'private';
+ state.ending=p.get('e')==='t'?'terminated':'resigned';
+ state.salary=+p.get('sal')||2250;
+ state.mode=p.get('m')==='q'?'quick':'dates';
+ state.qy=+p.get('y')||0;state.qm=+p.get('mo')||0;
+ if(p.get('jd'))state.join=p.get('jd');
+ if(p.get('ld'))state.last=p.get('ld');
+ state.lv=+p.get('lv')||0;state.np=+p.get('np')||0;
+ state.us=+p.get('us')||0;state.od=+p.get('od')||0;state.dd=+p.get('dd')||0;}
+
+/* ═══════════ اللغة والوضع ═══════════ */
+function applyI18n(){
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const v=I18N[lang][el.dataset.i18n]??I18N.ar[el.dataset.i18n];if(v!=null)el.textContent=v;});
+ document.querySelectorAll('[data-i18n-html]').forEach(el=>{const v=I18N[lang][el.dataset.i18nHtml]??I18N.ar[el.dataset.i18nHtml];if(v!=null)el.innerHTML=v;});
+ document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const v=I18N[lang][el.dataset.i18nPh]??I18N.ar[el.dataset.i18nPh];if(v!=null)el.placeholder=v;});
+ document.querySelectorAll('[data-i18n-title]').forEach(el=>{const v=I18N[lang][el.dataset.i18nTitle]??I18N.ar[el.dataset.i18nTitle];if(v!=null)el.title=v;});
+ document.title=lang==='ar'?'حاسبة مكافأة نهاية الخدمة في الكويت — قانون العمل 2026':'Kuwait End-of-Service Indemnity Calculator — Labor Law 2026';
+ $('salaryRange').setAttribute('aria-label',t('salaryLbl'));
+ updateChrome();}
+function setLang(l){
+ lang=l;store.set('kw-lang',l);
+ document.documentElement.lang=l;
+ document.documentElement.dir=(l==='ar'?'rtl':'ltr');
+ applyI18n();render();}
+function setTheme(th){
+ document.documentElement.dataset.theme=th;
+ document.documentElement.style.colorScheme=th;
+ store.set('kw-theme',th);
+ setRange($('salaryRange'));
+ updateChrome();}
+function updateChrome(){
+ $('themeBtn').textContent=document.documentElement.dataset.theme==='dark'?'☀️':'🌙';
+ $('themeBtn').title=document.documentElement.dataset.theme==='dark'
+  ?L('التبديل إلى الوضع النهاري','Switch to light mode')
+  :L('التبديل إلى الوضع الليلي','Switch to dark mode');
+ $('langBtn').textContent=lang==='ar'?'EN':'ع';
+ $('langBtn').title=lang==='ar'?'التبديل إلى الإنجليزية':'Switch to Arabic';}
+
+/* ═══════════ ربط المدخلات ═══════════ */
+function setRange(el){
+ const min=+el.min,max=+el.max,v=Math.min(max,Math.max(min,+el.value));
+ const pc=(v-min)/(max-min)*100;
+ const tr=getComputedStyle(document.documentElement).getPropertyValue('--rangeTrack').trim()||'#e3ece6';
+ el.style.background='linear-gradient(to right,#0f8a63 0%,#16a874 '+pc+'%, '+tr+' '+pc+'%, '+tr+' 100%)';}
+function refreshOpts(){$$('.opt').forEach(l=>{const i=l.querySelector('input');l.classList.toggle('on',i.checked);});}
+function syncPanels(){$('quickPanel').hidden=state.mode!=='quick';$('datesPanel').hidden=state.mode!=='dates';}
+
+ $$('input[name=sector]').forEach(r=>r.addEventListener('change',e=>{state.sector=e.target.value;refreshOpts();render();}));
+ $$('input[name=ending]').forEach(r=>r.addEventListener('change',e=>{state.ending=e.target.value;refreshOpts();render();}));
+ $$('input[name=smode]').forEach(r=>r.addEventListener('change',e=>{state.mode=e.target.value;refreshOpts();syncPanels();render();}));
+
+ $('salaryNum').addEventListener('input',e=>{state.salary=Math.max(0,parseFloat(e.target.value)||0);$('salaryRange').value=Math.min(5000,state.salary);setRange($('salaryRange'));render();});
+ $('salaryRange').addEventListener('input',e=>{state.salary=+e.target.value;$('salaryNum').value=state.salary;setRange(e.target);render();});
+ $$('.schip').forEach(b=>b.addEventListener('click',()=>{state.salary=+b.dataset.v;$('salaryNum').value=state.salary;$('salaryRange').value=Math.min(5000,state.salary);setRange($('salaryRange'));render();}));
+
+const numBind=id=>$(id).addEventListener('input',e=>{state[id]=Math.max(0,parseFloat(e.target.value)||0);render();});
+['qy','qm','lv','np','us','od','dd'].forEach(numBind);
+ $('joinDate').addEventListener('input',e=>{state.join=e.target.value;render();});
+ $('lastDate').addEventListener('input',e=>{state.last=e.target.value;render();});
+const rateBind=(id,key)=>$(id).addEventListener('input',e=>{const v=parseFloat(e.target.value);if(v>0)rates[key]=v;render();});
+rateBind('rInr','inr');rateBind('rPkr','pkr');rateBind('rPhp','php');rateBind('rEgp','egp');rateBind('rSar','sar');rateBind('rGold','gold');
+
+ $('chartBars').addEventListener('click',e=>{const b=e.target.closest('.bar');if(!b)return;chartSel=+b.dataset.k;render();});
+ $('copyBtn').addEventListener('click',async()=>{
+ updateHash();const url=location.href;
+ try{await navigator.clipboard.writeText(url);}
+ catch(_){const tx=document.createElement('textarea');tx.value=url;document.body.appendChild(tx);tx.select();try{document.execCommand('copy');}catch(e){}tx.remove();}
+ $('copyOk').hidden=false;setTimeout(()=>$('copyOk').hidden=true,2200);});
+ $('printBtn').addEventListener('click',()=>window.print());
+ $('upBtn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+ $('themeBtn').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+ $('langBtn').addEventListener('click',()=>setLang(lang==='ar'?'en':'ar'));
+
+ $('faqSearch').addEventListener('input',e=>{
+ const norm=s=>s.replace(/[\u064B-\u0652]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');
+ const q=norm(e.target.value.trim());
+ let n=0;
+ $$('#faqList details').forEach(d=>{
+  const hit=!q||norm(d.textContent).includes(q);
+  d.style.display=hit?'':'none';if(hit)n++;});
+ $('faqCount').textContent=q?(n+(lang==='ar'?(n===1?' نتيجة':' نتيجة'):(n===1?' result':' results'))):'';});
+ $('faqOpen').addEventListener('click',()=>$$('#faqList details').forEach(d=>d.open=true));
+ $('faqClose').addEventListener('click',()=>$$('#faqList details').forEach(d=>d.open=false));
+window.addEventListener('beforeprint',()=>$$('#faqList details').forEach(d=>d.open=true));
+
+/* ═══════════ التشغيل ═══════════ */
+applyFromHash();
+ $$('input[name=sector]').forEach(r=>r.checked=(r.value===state.sector));
+ $$('input[name=ending]').forEach(r=>r.checked=(r.value===state.ending));
+ $$('input[name=smode]').forEach(r=>r.checked=(r.value===state.mode));
+ $('salaryNum').value=state.salary;$('salaryRange').value=Math.min(5000,state.salary);
+ $('qy').value=state.qy;$('qm').value=state.qm;
+ $('joinDate').value=state.join;$('lastDate').value=state.last;
+['lv','np','us','od','dd'].forEach(k=>$(k).value=state[k]);
+ $('rInr').value=rates.inr;$('rPkr').value=rates.pkr;$('rPhp').value=rates.php;
+ $('rEgp').value=rates.egp;$('rSar').value=rates.sar;$('rGold').value=rates.gold;
+refreshOpts();syncPanels();setRange($('salaryRange'));
+applyI18n();
+render();
+updateChrome();
+</script>
+</body>
+</html>
